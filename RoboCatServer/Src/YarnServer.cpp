@@ -26,13 +26,25 @@ void YarnServer::Update()
 
 bool YarnServer::HandleCollisionWithCat( RoboCat* inCat )
 {
+	//Stops projectile damaging the owner
 	if( inCat->GetPlayerId() != GetPlayerId() )
 	{
-		//kill yourself!
-		SetDoesWantToDie( true );
+		//Dylan - Projectiles only damage enemy tanks
+		if (inCat->GetPlayerId() % 2 == 0 && GetPlayerId() % 2 != 0)
+		{
+			//kill yourself!
+			SetDoesWantToDie(true);
 
-		static_cast< RoboCatServer* >( inCat )->TakeDamage( GetPlayerId() );
+			static_cast<RoboCatServer*>(inCat)->TakeDamage(GetPlayerId());
+		}
 
+		if (inCat->GetPlayerId() % 2 != 0 && GetPlayerId() % 2 == 0)
+		{
+			//kill yourself!
+			SetDoesWantToDie(true);
+
+			static_cast<RoboCatServer*>(inCat)->TakeDamage(GetPlayerId());
+		}
 	}
 
 	return false;

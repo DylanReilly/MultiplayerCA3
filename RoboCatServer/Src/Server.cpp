@@ -31,11 +31,27 @@ Server::Server()
 	//NetworkManagerServer::sInstance->SetSimulatedLatency( 0.5f );
 	//NetworkManagerServer::sInstance->SetSimulatedLatency( 0.1f );
 
-	m_spawnPoints = {
-		Vector3(200, 1000, 0)
-
+	//Dylan - Initialize team spawn points
+	m_red_spawnPoints = {
+		Vector3(160, 1000, 0),
+		Vector3(160, 850, 0),
+		Vector3(160, 700, 0),
+		Vector3(160, 550, 0),
+		Vector3(160, 400, 0),
+		Vector3(160, 250, 0),
+		Vector3(160, 150, 0)
+		
 	};
 
+	m_green_spawnPoints = {
+		Vector3(1700, 1000, 0),
+		Vector3(1700, 850, 0),
+		Vector3(1700, 700, 0),
+		Vector3(1700, 550, 0),
+		Vector3(1700, 400, 0),
+		Vector3(1700, 250, 0),
+		Vector3(1700, 150, 0)
+	};
 }
 
 
@@ -123,9 +139,17 @@ void Server::SpawnCatForPlayer( int inPlayerId )
 	cat->SetColor( ScoreBoardManager::sInstance->GetEntry( inPlayerId )->GetColor() );
 	cat->SetPlayerId( inPlayerId );
 	
-	// Pick one of a few random locations.
-	int randomIndex = rand() % m_spawnPoints.size();
-	cat->SetLocation( m_spawnPoints[randomIndex] );
+	// Dylan - Spawns player on one side or the other depending on ID
+	int randomIndex = rand() % m_red_spawnPoints.size();
+	if(inPlayerId % 2 == 0)
+	{ 
+		cat->SetLocation(m_red_spawnPoints[randomIndex]);
+	}
+	else
+	{
+		cat->SetLocation(m_green_spawnPoints[randomIndex]);
+	}
+	
 
 
 }

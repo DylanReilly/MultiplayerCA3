@@ -23,6 +23,7 @@ private:
 	void	PickupUpdate();
 	void	SetupWorld();
 
-	std::vector<Vector3> m_spawnPoints;
+	std::vector<Vector3> m_green_spawnPoints;
+	std::vector<Vector3> m_red_spawnPoints;
 
 };

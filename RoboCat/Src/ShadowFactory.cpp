@@ -59,7 +59,7 @@ bool ShadowFactory::load()
 	float rectSize = 64;
 
 	sf::Image map;
-	if (!map.loadFromFile("../Assets/maps/map.png"))
+	if (!map.loadFromFile("../Assets/maps/TankMap.png"))
 		return false;
 
 
@@ -70,7 +70,7 @@ bool ShadowFactory::load()
 	{
 		for (int j = 0; j < size.y; j++)
 		{
-			if (map.getPixel(i, j) == sf::Color::Black)
+			if (map.getPixel(i, j) == sf::Color::Blue)
 			{
 				shadowCasters.push_back(sf::FloatRect(i * rectSize, j * rectSize, rectSize, rectSize));
 			}

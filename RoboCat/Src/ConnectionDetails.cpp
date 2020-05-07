@@ -15,7 +15,7 @@ ConnectionDetails::ConnectionDetails()
 
 void ConnectionDetails::Load()
 {
-	uint16_t port = 50021;
+	uint16_t port = 50001;
 	m_clientPort = port;
 	m_serverPort = port;
 

@@ -15,10 +15,16 @@ SFTextureManager::SFTextureManager()
 	CacheTexture("tile", "../Assets/tile.png");
 	CacheTexture("wood", "../Assets/wood.png");
 	CacheTexture("stone", "../Assets/stone.png");
-	CacheTexture("grass", "../Assets/grass.png");
+	CacheTexture("grass_org", "../Assets/grass.png");
 	CacheTexture("start_screen", "../Assets/start_screen.png");
 	CacheTexture("died_screen", "../Assets/died_screen.png");
 	CacheTexture("winner_screen", "../Assets/winner_screen.png");
+
+	//TankVTank Textures
+	CacheTexture("bricks", "../Assets/TankVTank_Media/Textures/Arena/Decor_Tiles/Decor_Tile_B_04.png");
+	CacheTexture("dirt", "../Assets/TankVTank_Media/Textures/Arena/Tiles/Ground_Tile_01_A.png");
+	CacheTexture("grass", "../Assets/TankVTank_Media/Textures/Arena/Tiles/Ground_Tile_01_B.png");
+
 
 	// Player textures.
 	CacheTexture("hitman", "../Assets/hitman.png");
@@ -30,6 +36,14 @@ SFTextureManager::SFTextureManager()
 	CacheTexture("soldier", "../Assets/soldier.png");
 	CacheTexture("woman", "../Assets/woman.png");
 	CacheTexture("zombie", "../Assets/zombie.png");
+
+	//Tank Textures
+	CacheTexture("GreenLMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-1.png");
+	CacheTexture("RedLMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-13.png");
+	CacheTexture("BlueLMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-25.png");
+	CacheTexture("GreenHMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-6.png");
+	CacheTexture("RedHMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-17.png");
+	CacheTexture("BlueHMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-29.png");
 
 	// Healthbar frames.
 	CacheTexture("health10", "../Assets/healthbar/health10.png");

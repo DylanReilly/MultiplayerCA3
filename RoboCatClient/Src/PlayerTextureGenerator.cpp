@@ -5,15 +5,12 @@ std::unique_ptr<PlayerTextureGenerator> PlayerTextureGenerator::sInstance;
 PlayerTextureGenerator::PlayerTextureGenerator()
 {
 	m_playerTextureIDs = {
-		"hitman", 
-		"hatman",
-		"man_blue",
-		"man_brown",
-		"man_old",
-		"robot",
-		"soldier",
-		"woman",
-		"zombie"
+		"GreenLMG", 
+		"RedLMG",
+		"BlueLMG",
+		"GreenHMG",
+		"RedHMG",
+		"BlueHMG"
 	};
 }
 

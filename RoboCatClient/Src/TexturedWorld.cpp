@@ -26,7 +26,7 @@ bool TexturedWorld::loadSprites()
 	int tileSize = 64;
 
 	sf::Image texWorld;
-	if (!texWorld.loadFromFile("../Assets/maps/map.png"))
+	if (!texWorld.loadFromFile("../Assets/maps/TankMap.png"))
 		return false;
 
 	auto size = texWorld.getSize();
@@ -45,13 +45,13 @@ bool TexturedWorld::loadSprites()
 			}
 			else if (texWorld.getPixel(i, j) == sf::Color::Blue)
 			{
-				spr.setTexture(*SFTextureManager::sInstance->GetTexture("stone"));
+				spr.setTexture(*SFTextureManager::sInstance->GetTexture("bricks"));
 				spr.setPosition(i * tileSize, j * tileSize);
 				m_spriteTiles.push_back(spr);
 			}
 			else if (texWorld.getPixel(i, j) == sf::Color::Red)
 			{
-				spr.setTexture(*SFTextureManager::sInstance->GetTexture("wood"));
+				spr.setTexture(*SFTextureManager::sInstance->GetTexture("dirt"));
 				spr.setPosition(i * tileSize, j * tileSize);
 				m_spriteTiles.push_back(spr);
 			}

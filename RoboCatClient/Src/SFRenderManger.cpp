@@ -166,6 +166,42 @@ sf::Vector2f SFRenderManager::NumberofAliveCats()
 	return sf::Vector2f(aliveCats, numberOfCats);
 }
 
+//Dylan - Checks if there are any members of a team left alive.
+bool SFRenderManager::IsWinner()
+{
+	bool isGreenAlive = false;
+	bool isRedAlive = false;
+	uint32_t catID = (uint32_t)'RCAT';
+	for (auto obj : World::sInstance->GetGameObjects())
+	{
+		// Find a cat.
+		if (obj->GetClassId() == catID)
+		{
+			RoboCat* cat = dynamic_cast<RoboCat*>(obj.get());
+			if (cat->GetHealth() > 0)
+			{
+				if (cat->GetPlayerId() % 2 == 1)
+				{
+					isGreenAlive = true;
+				}
+				else
+				{
+					isRedAlive = true;
+				}
+			}
+		}
+
+		if ((isGreenAlive == true && isRedAlive == true) || (isGreenAlive == false && isRedAlive == false))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+}
+
 void SFRenderManager::StaticInit()
 {
 	sInstance.reset(new SFRenderManager());
@@ -256,11 +292,8 @@ void SFRenderManager::Render()
 		else
 		{
 			// We are the last man standing.
-			sf::Vector2f cats = NumberofAliveCats();
-
-			
-			if (cats.x == 1.f && FindCatHealth() > 0 && 
-				ScoreBoardManager::sInstance->GetEntry(NetworkManagerClient::sInstance->GetPlayerId())->GetScore() > 0)
+			bool gameOver = IsWinner();
+			if (gameOver == true)
 			{
 				// Draw some you are the winner screen.
 				sf::Vector2f winner(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);

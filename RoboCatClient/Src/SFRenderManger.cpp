@@ -169,8 +169,8 @@ sf::Vector2f SFRenderManager::NumberofAliveCats()
 //Dylan - Checks if there are any members of a team left alive.
 bool SFRenderManager::IsWinner()
 {
-	bool isGreenAlive = false;
-	bool isRedAlive = false;
+	int greenAlive = 0;
+	int redAlive = 0;
 	uint32_t catID = (uint32_t)'RCAT';
 	for (auto obj : World::sInstance->GetGameObjects())
 	{
@@ -180,25 +180,25 @@ bool SFRenderManager::IsWinner()
 			RoboCat* cat = dynamic_cast<RoboCat*>(obj.get());
 			if (cat->GetHealth() > 0)
 			{
+				//Incriments if there is a player found on one of the teams respectively
 				if (cat->GetPlayerId() % 2 == 1)
 				{
-					isGreenAlive = true;
+					greenAlive++;
 				}
-				else
+				else if(cat->GetPlayerId() % 2 == 0)
 				{
-					isRedAlive = true;
+					redAlive++;
 				}
 			}
 		}
-
-		if ((isGreenAlive == true && isRedAlive == true) || (isGreenAlive == false && isRedAlive == false))
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
+	}
+	if ((greenAlive > 0 && redAlive > 0))
+	{
+		return false;
+	}
+	else
+	{
+		return true;
 	}
 }
 
@@ -291,8 +291,10 @@ void SFRenderManager::Render()
 		}
 		else
 		{
-			// We are the last man standing.
 			bool gameOver = IsWinner();
+			sf::Vector2f cats(NumberofAliveCats());
+
+			//Dylan - Displays game over screen if there are no players on one team
 			if (gameOver == true)
 			{
 				// Draw some you are the winner screen.

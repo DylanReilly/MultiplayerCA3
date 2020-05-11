@@ -98,3 +98,4 @@ bool Client::PullEvent(sf::Event &p_event)
 {
 	return SFWindowManager::sInstance->pollEvent(p_event);
 }
+

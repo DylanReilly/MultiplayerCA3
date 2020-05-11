@@ -37,15 +37,77 @@ SFTextureManager::SFTextureManager()
 	CacheTexture("woman", "../Assets/woman.png");
 	CacheTexture("zombie", "../Assets/zombie.png");
 
-	//Green Tank Textures
+	//Green Tank Start Varient
 	CacheTexture("GreenLMG1", "../Assets/TankVTank_Media/Textures/Tanks/tank-1.png");
 	CacheTexture("GreenLMG2", "../Assets/TankVTank_Media/Textures/Tanks/tank-2.png");
 	CacheTexture("GreenLMG3", "../Assets/TankVTank_Media/Textures/Tanks/tank-3.png");
 
-	//Red Tank Texture - Test
+	//Green Tank Heavy Variant
+	CacheTexture("GreenHvy1", "../Assets/TankVTank_Media/Textures/Tanks/tank-4.png");
+	CacheTexture("GreenHvy2", "../Assets/TankVTank_Media/Textures/Tanks/tank-5.png");
+	CacheTexture("GreenHvy3", "../Assets/TankVTank_Media/Textures/Tanks/tank-6.png");
+
+	//Green Tank Gatling Varient
+	CacheTexture("GreenGat1", "../Assets/TankVTank_Media/Textures/Tanks/tank-7.png");
+	CacheTexture("GreenGat2", "../Assets/TankVTank_Media/Textures/Tanks/tank-8.png");
+	CacheTexture("GreenGat3", "../Assets/TankVTank_Media/Textures/Tanks/tank-9.png");
+
+	//Green Tank Tesla Varient
+	CacheTexture("GreenTes1", "../Assets/TankVTank_Media/Textures/Tanks/tank-10.png");
+	CacheTexture("GreenTes2", "../Assets/TankVTank_Media/Textures/Tanks/tank-11.png");
+	CacheTexture("GreenTes3", "../Assets/TankVTank_Media/Textures/Tanks/tank-12.png");
+
+
+
+
+
+	//Red Tank Start Varient
 	CacheTexture("RedLMG1", "../Assets/TankVTank_Media/Textures/Tanks/tank-13.png");
 	CacheTexture("RedLMG2", "../Assets/TankVTank_Media/Textures/Tanks/tank-14.png");
 	CacheTexture("RedLMG3", "../Assets/TankVTank_Media/Textures/Tanks/tank-15.png");
+
+	//Red Tank Heavy Varient
+	CacheTexture("RedHvy1", "../Assets/TankVTank_Media/Textures/Tanks/tank-16.png");
+	CacheTexture("RedHvy2", "../Assets/TankVTank_Media/Textures/Tanks/tank-17.png");
+	CacheTexture("RedHvy3", "../Assets/TankVTank_Media/Textures/Tanks/tank-18.png");
+
+	//Red Tank Gatling Varient
+	CacheTexture("RedGat1", "../Assets/TankVTank_Media/Textures/Tanks/tank-19.png");
+	CacheTexture("RedGat2", "../Assets/TankVTank_Media/Textures/Tanks/tank-20.png");
+	CacheTexture("RedGat3", "../Assets/TankVTank_Media/Textures/Tanks/tank-21.png");
+
+	//Red Tank Tesla Varient
+	CacheTexture("RedTes1", "../Assets/TankVTank_Media/Textures/Tanks/tank-22.png");
+	CacheTexture("RedTes2", "../Assets/TankVTank_Media/Textures/Tanks/tank-23.png");
+	CacheTexture("RedTes3", "../Assets/TankVTank_Media/Textures/Tanks/tank-24.png");
+
+
+
+
+
+	//Blue Tank Start Varient
+	CacheTexture("BlueLMG1", "../Assets/TankVTank_Media/Textures/Tanks/tank-25.png");
+	CacheTexture("BlueLMG2", "../Assets/TankVTank_Media/Textures/Tanks/tank-26.png");
+	CacheTexture("BlueLMG3", "../Assets/TankVTank_Media/Textures/Tanks/tank-27.png");
+
+	//Blue Tank Heavy Varient
+	CacheTexture("BlueHvy1", "../Assets/TankVTank_Media/Textures/Tanks/tank-28.png");
+	CacheTexture("BlueHvy2", "../Assets/TankVTank_Media/Textures/Tanks/tank-29.png");
+	CacheTexture("BlueHvy3", "../Assets/TankVTank_Media/Textures/Tanks/tank-30.png");
+
+	//Blue Tank Gatling Varient
+	CacheTexture("BlueGat1", "../Assets/TankVTank_Media/Textures/Tanks/tank-31.png");
+	CacheTexture("BlueGat2", "../Assets/TankVTank_Media/Textures/Tanks/tank-32.png");
+	CacheTexture("BlueGat3", "../Assets/TankVTank_Media/Textures/Tanks/tank-33.png");
+
+	//Blue Tank Tesla Varient
+	CacheTexture("BlueTes1", "../Assets/TankVTank_Media/Textures/Tanks/tank-34.png");
+	CacheTexture("BlueTes2", "../Assets/TankVTank_Media/Textures/Tanks/tank-35.png");
+	CacheTexture("BlueTes3", "../Assets/TankVTank_Media/Textures/Tanks/tank-36.png");
+
+
+
+
 
 	// Healthbar frames.
 	CacheTexture("health10", "../Assets/healthbar/health10.png");

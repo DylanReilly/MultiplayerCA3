@@ -12,5 +12,6 @@ public:
 
 private:
 	std::string ResolveID(uint32_t p_id);
-	std::vector<std::string> m_playerTextureIDs;
+	std::vector<std::string> m_greenPlayerTextureIDs;
+	std::vector<std::string> m_redPlayerTextureIDs;
 };

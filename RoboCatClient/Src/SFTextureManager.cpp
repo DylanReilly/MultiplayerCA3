@@ -37,13 +37,15 @@ SFTextureManager::SFTextureManager()
 	CacheTexture("woman", "../Assets/woman.png");
 	CacheTexture("zombie", "../Assets/zombie.png");
 
-	//Tank Textures
-	CacheTexture("GreenLMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-1.png");
-	CacheTexture("RedLMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-13.png");
-	CacheTexture("BlueLMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-25.png");
-	CacheTexture("GreenHMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-6.png");
-	CacheTexture("RedHMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-17.png");
-	CacheTexture("BlueHMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-29.png");
+	//Green Tank Textures
+	CacheTexture("GreenLMG1", "../Assets/TankVTank_Media/Textures/Tanks/tank-1.png");
+	CacheTexture("GreenLMG2", "../Assets/TankVTank_Media/Textures/Tanks/tank-2.png");
+	CacheTexture("GreenLMG3", "../Assets/TankVTank_Media/Textures/Tanks/tank-3.png");
+
+	//Red Tank Texture
+	CacheTexture("RedLMG1", "../Assets/TankVTank_Media/Textures/Tanks/tank-13.png");
+	CacheTexture("RedLMG2", "../Assets/TankVTank_Media/Textures/Tanks/tank-14.png");
+	CacheTexture("RedLMG3", "../Assets/TankVTank_Media/Textures/Tanks/tank-15.png");
 
 	// Healthbar frames.
 	CacheTexture("health10", "../Assets/healthbar/health10.png");

@@ -129,7 +129,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;_WIN32_WINNT=0x0600;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>D:\DKIT\Year4_Semester2\Multiplayer\SFML-2.5.1\include;..\SDL\include;Inc;..\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\jason\Desktop\College 2019-2020\Multiplayer\SFML-2.5.1\include;..\SDL\include;Inc;..\</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>RoboCatPCH.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -212,7 +212,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0600;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\SDL\include;Inc;..\;C:\SFML-2.3.2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\jason\Desktop\College 2019-2020\Multiplayer\SFML-2.5.1\include;..\SDL\include;Inc;..\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
@@ -298,7 +298,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;PROFILE;_WINDOWS;_WIN32_WINNT=0x0600;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\SDL\include;Inc;..\;C:\SFML-2.3.2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\jason\Desktop\College 2019-2020\Multiplayer\SFML-2.5.1\include;..\SDL\include;Inc;..\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>

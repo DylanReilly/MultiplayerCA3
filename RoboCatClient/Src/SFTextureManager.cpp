@@ -41,9 +41,18 @@ SFTextureManager::SFTextureManager()
 	CacheTexture("GreenLMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-1.png");
 	CacheTexture("RedLMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-13.png");
 	CacheTexture("BlueLMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-25.png");
+
 	CacheTexture("GreenHMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-6.png");
 	CacheTexture("RedHMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-17.png");
 	CacheTexture("BlueHMG", "../Assets/TankVTank_Media/Textures/Tanks/tank-29.png");
+
+	CacheTexture("GreenGatling", "../Assets/TankVTank_Media/Textures/Tanks/tank-7.png");
+	CacheTexture("RedGatling", "../Assets/TankVTank_Media/Textures/Tanks/tank-19.png");
+	CacheTexture("BlueGatling", "../Assets/TankVTank_Media/Textures/Tanks/tank-31.png");
+
+	CacheTexture("GreenTesla", "../Assets/TankVTank_Media/Textures/Tanks/tank-11.png");
+	CacheTexture("RedTesla", "../Assets/TankVTank_Media/Textures/Tanks/tank-24.png");
+	CacheTexture("BlueTesla", "../Assets/TankVTank_Media/Textures/Tanks/tank-34.png");
 
 	// Healthbar frames.
 	CacheTexture("health10", "../Assets/healthbar/health10.png");

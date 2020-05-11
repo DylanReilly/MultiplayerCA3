@@ -29,6 +29,7 @@ bool YarnServer::HandleCollisionWithCat( RoboCat* inCat )
 	//Stops projectile damaging the owner
 	if( inCat->GetPlayerId() != GetPlayerId() )
 	{
+
 		//Dylan - Projectiles only damage enemy tanks
 		if (inCat->GetPlayerId() % 2 == 0 && GetPlayerId() % 2 != 0)
 		{

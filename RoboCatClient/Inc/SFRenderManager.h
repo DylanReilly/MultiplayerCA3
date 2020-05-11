@@ -30,6 +30,9 @@ private:
 	uint8_t FindCatHealth();
 	sf::Vector2f NumberofAliveCats();
 
+	//Dylan - check for remaining team members
+	bool IsWinner();
+
 	//this can't be only place that holds on to component- it has to live inside a GameObject in the world
 	vector< SFSpriteComponent* > mComponents;
 	sf::View view;

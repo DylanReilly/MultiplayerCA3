@@ -42,7 +42,7 @@ SFTextureManager::SFTextureManager()
 	CacheTexture("GreenLMG2", "../Assets/TankVTank_Media/Textures/Tanks/tank-2.png");
 	CacheTexture("GreenLMG3", "../Assets/TankVTank_Media/Textures/Tanks/tank-3.png");
 
-	//Red Tank Texture
+	//Red Tank Texture - Test
 	CacheTexture("RedLMG1", "../Assets/TankVTank_Media/Textures/Tanks/tank-13.png");
 	CacheTexture("RedLMG2", "../Assets/TankVTank_Media/Textures/Tanks/tank-14.png");
 	CacheTexture("RedLMG3", "../Assets/TankVTank_Media/Textures/Tanks/tank-15.png");

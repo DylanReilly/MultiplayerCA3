@@ -13,7 +13,7 @@ RoboCatClient::RoboCatClient() :
 	SoundManager::sInstance->PlayMusic();
 	m_healthSprite.reset(new SFHealthSpriteComponent(this));
 
-	mTankType = RoboCat::mTankType;
+	mTankType = RoboCat::GetTankType();
 }
 
 void RoboCatClient::HandleDying()

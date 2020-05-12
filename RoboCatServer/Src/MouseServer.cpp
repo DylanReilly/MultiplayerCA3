@@ -31,15 +31,18 @@ bool MouseServer::HandleCollisionWithCat( RoboCat* inCat )
 
 		}*/
 
-		inCat->SetTankType(3);
+		inCat->GetTankType()++;
 
 		if (inCat->GetHealth() <= 15)
 			inCat->GetHealth()++;
 		picked = true;
 		
-		// Hacked in here.
+		// Hacked in here.d
 		int ECRS_Health = 1 << 3;
 		NetworkManagerServer::sInstance->SetStateDirty(inCat->GetNetworkId(), ECRS_Health);
+
+		int ECRS_TankType = 1 << 4;
+		NetworkManagerServer::sInstance->SetStateDirty(inCat->GetNetworkId(), ECRS_TankType);
 	}
 	//kill yourself!
 	SetDoesWantToDie( true );

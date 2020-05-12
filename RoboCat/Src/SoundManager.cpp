@@ -9,11 +9,11 @@ void SoundManager::StaticInit()
 
 SoundManager::SoundManager()
 {
-	LoadSoundFromFile(pickup, pickupB, "../Assets/audio/Pickup.wav");
-	LoadSoundFromFile(shoot, shootB, "../Assets/audio/hit.wav");
+	LoadSoundFromFile(pickup, pickupB, "../Assets/TankVTank_Media/Sound/CollectPickup.wav");
+	LoadSoundFromFile(shoot, shootB, "../Assets/TankVTank_Media/Sound/TankCannon1.wav");
 	LoadSoundFromFile(death, deathB, "../Assets/audio/death.wav");
 	LoadSoundFromFile(join, joinB, "../Assets/audio/join.wav");
-	LoadMusicFromFile(bgMusic, "../Assets/audio/background.wav");
+	LoadMusicFromFile(bgMusic, "../Assets/TankVTank_Media/Music/MenuTheme.ogg");
 }
 
 void SoundManager::LoadSoundFromFile(sf::Sound &p_sound, sf::SoundBuffer &p_buffer, string p_file)

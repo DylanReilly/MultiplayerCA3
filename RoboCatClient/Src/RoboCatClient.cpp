@@ -5,12 +5,15 @@
 RoboCatClient::RoboCatClient() :
 	mTimeLocationBecameOutOfSync( 0.f ),
 	mTimeVelocityBecameOutOfSync( 0.f ),
-	m_textureIsDirty(true)
+	m_textureIsDirty(true),
+	mTankType(0)
 {
 	m_sprite.reset(new SFSpriteComponent(this));
 
 	SoundManager::sInstance->PlayMusic();
 	m_healthSprite.reset(new SFHealthSpriteComponent(this));
+
+	mTankType = RoboCat::mTankType;
 }
 
 void RoboCatClient::HandleDying()
@@ -27,10 +30,15 @@ void RoboCatClient::HandleDying()
 
 void RoboCatClient::Update()
 {
+	if (mTankType != RoboCat::GetTankType()) {
+		m_textureIsDirty = true;
+		mTankType = RoboCat::GetTankType();
+	}
+
 	// Check if we need to set the texture.
 	if (m_textureIsDirty)
 	{
-		m_sprite->SetTexture(PlayerTextureGenerator::sInstance->GetPlayerTexure(GetPlayerId()));
+		m_sprite->SetTexture(PlayerTextureGenerator::sInstance->GetPlayerTexure(GetPlayerId(), mTankType));
 		m_textureIsDirty = false;
 	}
 

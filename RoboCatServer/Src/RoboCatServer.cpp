@@ -1,10 +1,11 @@
 #include <RoboCatServerPCH.h>
 
 RoboCatServer::RoboCatServer() :
-	mCatControlType( ESCT_Human ),
-	mTimeOfNextShot( 0.f ),
-	mTimeBetweenShots( 0.2f )
-{}
+	mCatControlType(ESCT_Human),
+	mTimeOfNextShot(0.f),
+	mTimeBetweenShots(0.2f)
+{
+}
 
 void RoboCatServer::HandleDying()
 {

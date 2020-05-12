@@ -14,7 +14,8 @@ RoboCat::RoboCat() :
 	mThrustDir( sf::Vector2f(0.f, 0.f) ),
 	mPlayerId( 0 ),
 	mIsShooting( false ),
-	mHealth( 10 )
+	mHealth( 10 ),
+	mTankType(0)
 {
 	SetCollisionRadius( 20.f );
 }

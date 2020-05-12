@@ -30,6 +30,8 @@ public:
 
 	void		SetPlayerId( uint32_t inPlayerId )			{ mPlayerId = inPlayerId; }
 	uint32_t	GetPlayerId()						const 	{ return mPlayerId; }
+	void			SetTankType(int tankType) { mTankType = tankType; }
+	int				GetTankType() {	return mTankType; }
 
 	void			SetVelocity( const Vector3& inVelocity )	{ mVelocity = inVelocity; }
 	const Vector3&	GetVelocity()						const	{ return mVelocity; }
@@ -69,6 +71,7 @@ protected:
 
 	sf::Vector2f		mThrustDir;
 	uint8_t					mHealth;
+	int					mTankType;
 
 	bool				mIsShooting;
 

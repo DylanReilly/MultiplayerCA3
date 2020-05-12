@@ -134,12 +134,218 @@ SFTextureManager::SFTextureManager()
 
 }
 
-SFTexturePtr SFTextureManager::GetTexture(const string & inTextureName)
+SFTexturePtr SFTextureManager::GetTexture(const string& inTextureName, int tankType)
+{
+	//return mNameToTextureMap[inTextureName];
+
+	std::string tex = pickTexture(inTextureName, tankType);
+	return mNameToTextureMap[tex];
+}
+
+SFTexturePtr SFTextureManager::GetTexture(const string& inTextureName)
 {
 	return mNameToTextureMap[inTextureName];
 }
 
-bool SFTextureManager::CacheTexture(string inName, const char * inFileName)
+std::string SFTextureManager::pickTexture(const string& inTextureName, int tankType) {
+	srand((unsigned)time(0));
+	int result = 1 + (rand() % 3);
+
+	if (tankType == 0) {
+
+		if (result == 1)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenLMG1";
+			}
+			else
+			{
+				return "RedLMG1";
+			}
+		}
+		else if (result == 2)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenLMG2";
+			}
+			else
+			{
+				return "RedLMG2";
+			}
+		}
+		else if (result == 3)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenLMG3";
+			}
+			else
+			{
+				return "RedLMG3";
+			}
+		}
+		else //Default just in case
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenLMG1";
+			}
+			else
+			{
+				return "RedLMG1";
+			}
+		}
+	}
+	else if (tankType == 1)
+	{
+
+		if (result == 1)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenHvy1";
+			}
+			else
+			{
+				return "RedHvy1";
+			}
+		}
+		else if (result == 2)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenHvy2";
+			}
+			else
+			{
+				return "RedHvy2";
+			}
+		}
+		else if (result == 3)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenHvy3";
+			}
+			else
+			{
+				return "RedHvy3";
+			}
+		}
+		else //Default just in case
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenHvy1";
+			}
+			else
+			{
+				return "RedHvy1";
+			}
+		}
+	}
+	else if (tankType == 2)
+	{
+
+		if (result == 1)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenGat1";
+			}
+			else
+			{
+				return "RedGat1";
+			}
+		}
+		else if (result == 2)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenGat2";
+			}
+			else
+			{
+				return "RedGat2";
+			}
+		}
+		else if (result == 3)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenGat3";
+			}
+			else
+			{
+				return "RedGat3";
+			}
+		}
+		else //Default just in case
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenGat1";
+			}
+			else
+			{
+				return "RedGat1";
+			}
+		}
+	}
+	else if (tankType == 3)
+	{
+
+		if (result == 1)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenTes1";
+			}
+			else
+			{
+				return "RedTes1";
+			}
+		}
+		else if (result == 2)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenTes2";
+			}
+			else
+			{
+				return "RedTes2";
+			}
+		}
+		else if (result == 3)
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenTes3";
+			}
+			else
+			{
+				return "RedTes3";
+			}
+		}
+		else //Default just in case
+		{
+			if (inTextureName == "green")
+			{
+				return "GreenTes1";
+			}
+			else
+			{
+				return "RedTes1";
+			}
+		}
+	}
+
+}
+
+bool SFTextureManager::CacheTexture(string inName, const char* inFileName)
 {
 	SFTexturePtr newTex(new sf::Texture());
 	if (!newTex->loadFromFile(inFileName))

@@ -17,21 +17,30 @@ PlayerTextureGenerator::PlayerTextureGenerator()
 	};
 }
 
-SFTexturePtr PlayerTextureGenerator::GetPlayerTexure(uint32_t p_id)
+SFTexturePtr PlayerTextureGenerator::GetPlayerTexure(uint32_t p_id, int tankType)
 {
 	
-	return SFTextureManager::sInstance->GetTexture(ResolveID(p_id));
+	return SFTextureManager::sInstance->GetTexture(ResolveID(p_id), tankType);
 }
 
 std::string PlayerTextureGenerator::ResolveID(uint32_t p_id)
 {
-	if (p_id % 2 == 1)
+	/*if (p_id % 2 == 1)
 	{
 		return m_greenPlayerTextureIDs[p_id % m_greenPlayerTextureIDs.size()];
 	}
 	else
 	{
 		return m_redPlayerTextureIDs[p_id % m_redPlayerTextureIDs.size()];
+	}*/
+
+	if (p_id % 2 == 1)
+	{
+		return "green";
+	}
+	else
+	{
+		return "red";
 	}
 }
 

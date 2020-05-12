@@ -15,7 +15,7 @@ bool MouseServer::HandleCollisionWithCat( RoboCat* inCat )
 {
 	if (!picked)
 	{
-		srand((unsigned)time(0));
+		/*srand((unsigned)time(0));
 		int result = 1 + (rand() % 100);
 
 		if (result >= 1 && result <= 25) {
@@ -29,7 +29,9 @@ bool MouseServer::HandleCollisionWithCat( RoboCat* inCat )
 		}
 		else {
 
-		}
+		}*/
+
+		inCat->SetTankType(3);
 
 		if (inCat->GetHealth() <= 15)
 			inCat->GetHealth()++;

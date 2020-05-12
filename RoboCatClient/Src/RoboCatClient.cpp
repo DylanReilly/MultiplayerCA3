@@ -1,5 +1,6 @@
 #include <RoboCatClientPCH.h>
-
+#include <iostream>
+#include <fstream>
 
 
 RoboCatClient::RoboCatClient() :
@@ -24,6 +25,19 @@ void RoboCatClient::HandleDying()
 	if( GetPlayerId() == NetworkManagerClient::sInstance->GetPlayerId() )
 	{
 		HUD::sInstance->SetPlayerHealth( 0 );
+
+		//Dylan - Writes score to file on death
+		ScoreBoardManager::Entry* score = ScoreBoardManager::sInstance->GetEntry(NetworkManagerClient::sInstance->GetPlayerId());
+		std::ifstream inputFile;
+		int fileScore;
+		inputFile.open("../Assets/Saved/Scores.txt");
+		inputFile >> fileScore;
+		inputFile.close();
+
+		fileScore += score->GetScore();
+		std::ofstream outputFile("../Assets/Saved/Scores.txt");
+		outputFile << fileScore;
+        outputFile.close();
 	}
 }
 

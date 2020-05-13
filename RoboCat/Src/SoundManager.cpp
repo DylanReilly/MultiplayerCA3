@@ -21,7 +21,7 @@ void SoundManager::LoadSoundFromFile(sf::Sound &p_sound, sf::SoundBuffer &p_buff
 	if (p_buffer.loadFromFile(p_file))
 	{
 		p_sound.setBuffer(p_buffer);
-		p_sound.setVolume(35);
+		p_sound.setVolume(5);
 	}
 }
 
@@ -29,7 +29,7 @@ void SoundManager::LoadMusicFromFile(sf::Music &p_music, string p_file)
 {
 	p_music.openFromFile(p_file);
 	p_music.setLoop(true);
-	p_music.setVolume(20);
+	p_music.setVolume(5);
 }
 
 void SoundManager::PlayMusic()

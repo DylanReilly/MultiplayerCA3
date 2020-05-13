@@ -32,4 +32,5 @@ private:
 
 	bool m_textureIsDirty;
 	uint8_t	mTankType;
+	uint8_t mPrevTankType;
 };

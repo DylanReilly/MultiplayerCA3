@@ -7,7 +7,8 @@ RoboCatClient::RoboCatClient() :
 	mTimeLocationBecameOutOfSync( 0.f ),
 	mTimeVelocityBecameOutOfSync( 0.f ),
 	m_textureIsDirty(true),
-	mTankType(0)
+	mTankType(0),
+	mPrevTankType(20)
 {
 	m_sprite.reset(new SFSpriteComponent(this));
 
@@ -31,9 +32,9 @@ void RoboCatClient::HandleDying()
 
 void RoboCatClient::Update()
 {
-	if (mTankType != RoboCat::GetTankType()) {
+	if (mTankType != mPrevTankType) {
 		m_textureIsDirty = true;
-		mTankType = RoboCat::GetTankType();
+		mPrevTankType = mTankType;
 	}
 
 	// Check if we need to set the texture.

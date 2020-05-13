@@ -31,7 +31,7 @@ bool MouseServer::HandleCollisionWithCat( RoboCat* inCat )
 
 		}*/
 
-		inCat->GetTankType()++;
+		inCat->SetTankType(1);
 
 		if (inCat->GetHealth() <= 15)
 			inCat->GetHealth()++;

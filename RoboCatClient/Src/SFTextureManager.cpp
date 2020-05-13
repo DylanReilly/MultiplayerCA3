@@ -134,7 +134,7 @@ SFTextureManager::SFTextureManager()
 
 }
 
-SFTexturePtr SFTextureManager::GetTexture(const string& inTextureName, int tankType)
+SFTexturePtr SFTextureManager::GetTexture(const string& inTextureName, int tankType) //Jason- Overload of base GetTexture for tank textures
 {
 	//return mNameToTextureMap[inTextureName];
 
@@ -147,7 +147,7 @@ SFTexturePtr SFTextureManager::GetTexture(const string& inTextureName)
 	return mNameToTextureMap[inTextureName];
 }
 
-std::string SFTextureManager::pickTexture(const string& inTextureName, int tankType) {
+std::string SFTextureManager::pickTexture(const string& inTextureName, int tankType) { //Jason - Gets texture based on value from tank type. Also checks which colour you are
 	srand((unsigned)time(0));
 	int result = 1 + (rand() % 3);
 

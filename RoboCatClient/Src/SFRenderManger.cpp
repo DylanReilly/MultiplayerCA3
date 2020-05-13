@@ -167,6 +167,34 @@ sf::Vector2f SFRenderManager::NumberofAliveCats()
 	return sf::Vector2f(aliveCats, numberOfCats);
 }
 
+sf::Vector2f SFRenderManager::getTeamScores()
+{
+	int redScore = 0;
+	int greenScore = 0;
+	int playerCount = 0;
+	ScoreBoardManager::Entry* score;
+
+	uint32_t catID = (uint32_t)'RCAT';
+	for (auto obj : World::sInstance->GetGameObjects())
+	{
+		//Dylan - Count all players in the game
+		if (obj->GetClassId() == catID)
+		{
+			RoboCat* cat = dynamic_cast<RoboCat*>(obj.get());
+			score = ScoreBoardManager::sInstance->GetEntry(cat->GetPlayerId());
+			if (score->GetPlayerId() % 2 == 0)
+			{
+				redScore += score->GetScore();
+			}
+			else
+			{
+				greenScore += score->GetScore();
+			}
+		}
+	}
+	return sf::Vector2f(redScore, greenScore);
+}
+
 //Dylan - Checks if there are any members of a team left alive.
 bool SFRenderManager::IsWinner()
 {
@@ -313,9 +341,11 @@ void SFRenderManager::Render()
 		{
 			bool gameOver = IsWinner();
 			sf::Vector2f cats(NumberofAliveCats());
+			sf::Vector2f scores(getTeamScores());
 
 			//Dylan - Displays game over screen if there are no players on one team
-			if (gameOver == true)
+			//Dylan - additional check to stop winner screen displaying on game startup -> at least one point must be scored to win
+			if (gameOver == true && (scores.x > 0 || scores.y > 0))
 			{
 				// Draw some you are the winner screen.
 				sf::Vector2f winner(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
@@ -333,6 +363,7 @@ void SFRenderManager::Render()
 					inputFile.close();
 
 					fileScore += score->GetScore();
+					//Add an additional point for winning
 					fileScore++;
 					std::ofstream outputFile("../Assets/Saved/Scores.txt");
 					outputFile << fileScore;

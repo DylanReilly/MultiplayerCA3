@@ -15,26 +15,26 @@ bool MouseServer::HandleCollisionWithCat( RoboCat* inCat )
 {
 	if (!picked)
 	{
-		/*srand((unsigned)time(0));
+		srand((unsigned)time(0));
 		int result = 1 + (rand() % 100);
 
 		if (result >= 1 && result <= 25) {
-
+			if (inCat->GetHealth() <= 15)
+				inCat->GetHealth()++;
 		}
 		else if (result >= 26 && result <= 50) {
-
+			inCat->SetTankType(1);
 		}
 		else if (result >= 51 && result <= 75) {
-			
+			inCat->SetTankType(2);
 		}
 		else {
+			inCat->SetTankType(3);
+		}
 
-		}*/
+		/*if (inCat->GetHealth() <= 15)
+			inCat->GetHealth()++;*/
 
-		inCat->SetTankType(1);
-
-		if (inCat->GetHealth() <= 15)
-			inCat->GetHealth()++;
 		picked = true;
 
 		// Hacked in here.d

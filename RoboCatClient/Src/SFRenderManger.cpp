@@ -10,6 +10,7 @@ SFRenderManager::SFRenderManager()
 	m_startScreen.setTexture(*SFTextureManager::sInstance->GetTexture("start_screen"));
 	m_diedScreen.setTexture(*SFTextureManager::sInstance->GetTexture("died_screen"));
 	m_winnerScreen.setTexture(*SFTextureManager::sInstance->GetTexture("winner_screen"));
+	hasWrittenScore = false;
 }
 
 void SFRenderManager::RenderUI()
@@ -288,6 +289,25 @@ void SFRenderManager::Render()
 			sf::Vector2f died(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
 			m_diedScreen.setPosition(died);
 			SFWindowManager::sInstance->draw(m_diedScreen);
+
+			if (hasWrittenScore == false) {
+				//Dylan - Writes score to file on game death
+				//Done on the client side as there is no need to pass this information over the network
+				ScoreBoardManager::Entry* score = ScoreBoardManager::sInstance->GetEntry(NetworkManagerClient::sInstance->GetPlayerId());
+				std::ifstream inputFile;
+				int fileScore;
+				inputFile.open("../Assets/Saved/Scores.txt");
+				inputFile >> fileScore;
+				inputFile.close();
+
+				fileScore += score->GetScore();
+				std::ofstream outputFile("../Assets/Saved/Scores.txt");
+				outputFile << fileScore;
+				outputFile.close();
+				//Dylan - stops score being written over and over
+				hasWrittenScore = true;
+			}
+
 		}
 		else
 		{
@@ -301,6 +321,25 @@ void SFRenderManager::Render()
 				sf::Vector2f winner(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
 				m_winnerScreen.setPosition(winner);
 				SFWindowManager::sInstance->draw(m_winnerScreen);
+
+				if (hasWrittenScore == false) {
+					//Dylan - Writes score to file on win
+					//Done on the client side as there is no need to pass this information over the network
+					ScoreBoardManager::Entry* score = ScoreBoardManager::sInstance->GetEntry(NetworkManagerClient::sInstance->GetPlayerId());
+					std::ifstream inputFile;
+					int fileScore;
+					inputFile.open("../Assets/Saved/Scores.txt");
+					inputFile >> fileScore;
+					inputFile.close();
+
+					fileScore += score->GetScore();
+					fileScore++;
+					std::ofstream outputFile("../Assets/Saved/Scores.txt");
+					outputFile << fileScore;
+					outputFile.close();
+					//Dylan - stops score being written over and over
+					hasWrittenScore = true;
+				}
 			}
 		}
 	}

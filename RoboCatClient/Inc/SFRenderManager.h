@@ -29,6 +29,9 @@ private:
 
 	uint8_t FindCatHealth();
 	sf::Vector2f NumberofAliveCats();
+	sf::Vector2f getTeamScores();
+
+	bool hasWrittenScore;
 
 	//Dylan - check for remaining team members
 	bool IsWinner();

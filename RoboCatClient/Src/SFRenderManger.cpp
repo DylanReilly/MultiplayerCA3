@@ -10,6 +10,7 @@ SFRenderManager::SFRenderManager()
 	m_startScreen.setTexture(*SFTextureManager::sInstance->GetTexture("start_screen"));
 	m_diedScreen.setTexture(*SFTextureManager::sInstance->GetTexture("died_screen"));
 	m_winnerScreen.setTexture(*SFTextureManager::sInstance->GetTexture("winner_screen"));
+	hasWrittenScore = false;
 }
 
 void SFRenderManager::RenderUI()
@@ -166,6 +167,34 @@ sf::Vector2f SFRenderManager::NumberofAliveCats()
 	return sf::Vector2f(aliveCats, numberOfCats);
 }
 
+sf::Vector2f SFRenderManager::getTeamScores()
+{
+	int redScore = 0;
+	int greenScore = 0;
+	int playerCount = 0;
+	ScoreBoardManager::Entry* score;
+
+	uint32_t catID = (uint32_t)'RCAT';
+	for (auto obj : World::sInstance->GetGameObjects())
+	{
+		//Dylan - Count all players in the game
+		if (obj->GetClassId() == catID)
+		{
+			RoboCat* cat = dynamic_cast<RoboCat*>(obj.get());
+			score = ScoreBoardManager::sInstance->GetEntry(cat->GetPlayerId());
+			if (score->GetPlayerId() % 2 == 0)
+			{
+				redScore += score->GetScore();
+			}
+			else
+			{
+				greenScore += score->GetScore();
+			}
+		}
+	}
+	return sf::Vector2f(redScore, greenScore);
+}
+
 //Dylan - Checks if there are any members of a team left alive.
 bool SFRenderManager::IsWinner()
 {
@@ -288,19 +317,60 @@ void SFRenderManager::Render()
 			sf::Vector2f died(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
 			m_diedScreen.setPosition(died);
 			SFWindowManager::sInstance->draw(m_diedScreen);
+
+			if (hasWrittenScore == false) {
+				//Dylan - Writes score to file on game death
+				//Done on the client side as there is no need to pass this information over the network
+				ScoreBoardManager::Entry* score = ScoreBoardManager::sInstance->GetEntry(NetworkManagerClient::sInstance->GetPlayerId());
+				std::ifstream inputFile;
+				int fileScore;
+				inputFile.open("../Assets/Saved/Scores.txt");
+				inputFile >> fileScore;
+				inputFile.close();
+
+				fileScore += score->GetScore();
+				std::ofstream outputFile("../Assets/Saved/Scores.txt");
+				outputFile << fileScore;
+				outputFile.close();
+				//Dylan - stops score being written over and over
+				hasWrittenScore = true;
+			}
+
 		}
 		else
 		{
 			bool gameOver = IsWinner();
 			sf::Vector2f cats(NumberofAliveCats());
+			sf::Vector2f scores(getTeamScores());
 
 			//Dylan - Displays game over screen if there are no players on one team
-			if (gameOver == true)
+			//Dylan - additional check to stop winner screen displaying on game startup -> at least one point must be scored to win
+			if (gameOver == true && (scores.x > 0 || scores.y > 0))
 			{
 				// Draw some you are the winner screen.
 				sf::Vector2f winner(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
 				m_winnerScreen.setPosition(winner);
 				SFWindowManager::sInstance->draw(m_winnerScreen);
+
+				if (hasWrittenScore == false) {
+					//Dylan - Writes score to file on win
+					//Done on the client side as there is no need to pass this information over the network
+					ScoreBoardManager::Entry* score = ScoreBoardManager::sInstance->GetEntry(NetworkManagerClient::sInstance->GetPlayerId());
+					std::ifstream inputFile;
+					int fileScore;
+					inputFile.open("../Assets/Saved/Scores.txt");
+					inputFile >> fileScore;
+					inputFile.close();
+
+					fileScore += score->GetScore();
+					//Add an additional point for winning
+					fileScore++;
+					std::ofstream outputFile("../Assets/Saved/Scores.txt");
+					outputFile << fileScore;
+					outputFile.close();
+					//Dylan - stops score being written over and over
+					hasWrittenScore = true;
+				}
 			}
 		}
 	}

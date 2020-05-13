@@ -151,20 +151,27 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 	srand((unsigned)time(0));
 	int result = 1 + (rand() % 3);
 
+	//Dylan - Checks player score before spawning tank
+	std::ifstream inputFile;
+	int fileScore;
+	inputFile.open("../Assets/Saved/Scores.txt");
+	inputFile >> fileScore;
+	inputFile.close();
+
 	if (tankType == 0) {
 
-		if (result == 1)
+		if (fileScore >= 5)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenLMG1";
+				return "GreenLMG3";
 			}
 			else
 			{
-				return "RedLMG1";
+				return "RedLMG3";
 			}
 		}
-		else if (result == 2)
+		else if (fileScore >= 3)
 		{
 			if (inTextureName == "green")
 			{
@@ -175,15 +182,15 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 				return "RedLMG2";
 			}
 		}
-		else if (result == 3)
+		else if (fileScore < 3)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenLMG3";
+				return "GreenLMG1";
 			}
 			else
 			{
-				return "RedLMG3";
+				return "RedLMG1";
 			}
 		}
 		else //Default just in case
@@ -201,18 +208,18 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 	else if (tankType == 1)
 	{
 
-		if (result == 1)
+		if (fileScore >= 5)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenHvy1";
+				return "GreenHvy3";
 			}
 			else
 			{
-				return "RedHvy1";
+				return "RedHvy3";
 			}
 		}
-		else if (result == 2)
+		else if (fileScore >= 3)
 		{
 			if (inTextureName == "green")
 			{
@@ -223,15 +230,15 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 				return "RedHvy2";
 			}
 		}
-		else if (result == 3)
+		else if (fileScore < 3)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenHvy3";
+				return "GreenHvy1";
 			}
 			else
 			{
-				return "RedHvy3";
+				return "RedHvy1";
 			}
 		}
 		else //Default just in case
@@ -249,18 +256,18 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 	else if (tankType == 2)
 	{
 
-		if (result == 1)
+		if (fileScore >= 5)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenGat1";
+				return "GreenGat3";
 			}
 			else
 			{
-				return "RedGat1";
+				return "RedGat3";
 			}
 		}
-		else if (result == 2)
+		else if (fileScore >= 3)
 		{
 			if (inTextureName == "green")
 			{
@@ -271,15 +278,15 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 				return "RedGat2";
 			}
 		}
-		else if (result == 3)
+		else if (fileScore < 3)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenGat3";
+				return "GreenGat1";
 			}
 			else
 			{
-				return "RedGat3";
+				return "RedGat1";
 			}
 		}
 		else //Default just in case
@@ -297,18 +304,18 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 	else if (tankType == 3)
 	{
 
-		if (result == 1)
+		if (fileScore >= 5)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenTes1";
+				return "GreenTes3";
 			}
 			else
 			{
-				return "RedTes1";
+				return "RedTes3";
 			}
 		}
-		else if (result == 2)
+		else if (fileScore >= 3)
 		{
 			if (inTextureName == "green")
 			{
@@ -319,15 +326,15 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 				return "RedTes2";
 			}
 		}
-		else if (result == 3)
+		else if (fileScore < 3)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenTes3";
+				return "GreenTes1";
 			}
 			else
 			{
-				return "RedTes3";
+				return "RedTes1";
 			}
 		}
 		else //Default just in case

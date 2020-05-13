@@ -88,14 +88,14 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>RoboCatServerPCH.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\jason\Desktop\College 2019-2020\Multiplayer\SFML-2.5.1\include;Inc;..\;..\RoboCat\Inc;..\SDL\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SFML-2.5.1\include;Inc;..\;..\RoboCat\Inc;..\SDL\include</AdditionalIncludeDirectories>
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>ws2_32.lib;SDL2.lib;SDL2main.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-main-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\jason\Desktop\College 2019-2020\Multiplayer\SFML-2.5.1\lib;..\SDL\lib\win\x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\SFML-2.5.1\lib;..\SDL\lib\win\x86</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)\..\SDL\lib\win\x86\*.dll" "$(OutDir)" /i /s /y</Command>

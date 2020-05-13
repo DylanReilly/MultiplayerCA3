@@ -288,7 +288,7 @@ uint32_t RoboCat::Write( OutputMemoryBitStream& inOutputStream, uint32_t inDirty
 		inOutputStream.Write( (bool)false );
 	}
 
-	/*if (inDirtyState & ECRS_TankType) 
+	if (inDirtyState & ECRS_TankType) 
 	{
 		inOutputStream.Write((bool)true);
 		inOutputStream.Write(mTankType, 4);
@@ -298,7 +298,7 @@ uint32_t RoboCat::Write( OutputMemoryBitStream& inOutputStream, uint32_t inDirty
 	else
 	{
 		inOutputStream.Write((bool)false);
-	}*/
+	}
 
 	return writtenState;
 }

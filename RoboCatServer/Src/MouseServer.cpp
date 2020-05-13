@@ -36,7 +36,7 @@ bool MouseServer::HandleCollisionWithCat( RoboCat* inCat )
 		if (inCat->GetHealth() <= 15)
 			inCat->GetHealth()++;
 		picked = true;
-		
+
 		// Hacked in here.d
 		int ECRS_Health = 1 << 3;
 		NetworkManagerServer::sInstance->SetStateDirty(inCat->GetNetworkId(), ECRS_Health);

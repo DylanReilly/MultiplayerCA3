@@ -28,10 +28,10 @@ public:
 
 	void ProcessCollisions();
 
-	void		SetPlayerId( uint32_t inPlayerId )			{ mPlayerId = inPlayerId; }
-	uint32_t	GetPlayerId()						const 	{ return mPlayerId; }
+	void			SetPlayerId( uint32_t inPlayerId )			{ mPlayerId = inPlayerId; }
+	uint32_t		GetPlayerId()						const 	{ return mPlayerId; }
 	void			SetTankType(int tankType) { mTankType = tankType; }
-	uint8_t&		GetTankType() {	return mTankType; }
+	uint8_t&		GetTankType() { return mTankType; };
 
 	void			SetVelocity( const Vector3& inVelocity )	{ mVelocity = inVelocity; }
 	const Vector3&	GetVelocity()						const	{ return mVelocity; }

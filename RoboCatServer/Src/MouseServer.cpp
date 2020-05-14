@@ -18,17 +18,17 @@ bool MouseServer::HandleCollisionWithCat( RoboCat* inCat ) //Jason - When player
 		srand((unsigned)time(0));
 		int result = 1 + (rand() % 100);
 
-		if (result >= 1 && result <= 25) {
+		if (result >= 1 && result <= 25) { //Jason - Restores health
 			if (inCat->GetHealth() <= 15)
 				inCat->GetHealth()++;
 		}
-		else if (result >= 26 && result <= 50) {
+		else if (result >= 26 && result <= 50) { //Jason - Sets tank to heavy
 			inCat->SetTankType(1);
 		}
-		else if (result >= 51 && result <= 75) {
+		else if (result >= 51 && result <= 75) { //Jason - Sets tank to gatling
 			inCat->SetTankType(2);
 		}
-		else {
+		else { //Jason - Sets tank to tesla 
 			inCat->SetTankType(3);
 		}
 
@@ -42,7 +42,7 @@ bool MouseServer::HandleCollisionWithCat( RoboCat* inCat ) //Jason - When player
 		NetworkManagerServer::sInstance->SetStateDirty(inCat->GetNetworkId(), ECRS_Health); //Sends new health value
 
 		int ECRS_TankType = 1 << 4;
-		NetworkManagerServer::sInstance->SetStateDirty(inCat->GetNetworkId(), ECRS_TankType); //Sends new tank type
+		NetworkManagerServer::sInstance->SetStateDirty(inCat->GetNetworkId(), ECRS_TankType); //Jason - Sends new tank type
 	}
 	//kill yourself!
 	SetDoesWantToDie( true );

@@ -6,7 +6,7 @@ YarnClient::YarnClient()
 	m_sprite.reset(new SFSpriteComponent(this));
 }
 
-void YarnClient::SetBulletTexture() {
+void YarnClient::SetBulletTexture() { //Jason - Sets texture of bullet based on read in value
 	uint8_t bulletId = Yarn::GetBulletId();
 
 	switch (bulletId)
@@ -72,7 +72,7 @@ void YarnClient::Read( InputMemoryBitStream& inInputStream )
 		inInputStream.Read( mPlayerId, 8 );
 	}
 
-	inInputStream.Read(stateBit);
+	inInputStream.Read(stateBit); //Jason - Reads in bullet ID
 	if (stateBit)
 	{
 		mBulletId = 0;
@@ -84,7 +84,7 @@ void YarnClient::Read( InputMemoryBitStream& inInputStream )
 	PlayBulletSound();
 }
 
-void YarnClient::PlayBulletSound() {
+void YarnClient::PlayBulletSound() { //Jason - Plays appropriate sound for bullet
 	uint8_t bulletId = Yarn::GetBulletId();
 
 	switch (bulletId)

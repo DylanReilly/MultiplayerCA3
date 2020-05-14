@@ -7,7 +7,7 @@ void SoundManager::StaticInit()
 	sInstance.reset(new SoundManager());
 }
 
-SoundManager::SoundManager()
+SoundManager::SoundManager()//Jason - Added extra sounds
 {
 	LoadSoundFromFile(pickup, pickupB, "../Assets/TankVTank_Media/Sound/CollectPickup.wav");
 	LoadSoundFromFile(shoot, shootB, "../Assets/TankVTank_Media/Sound/TankLMG.wav");
@@ -39,7 +39,7 @@ void SoundManager::PlayMusic()
 	bgMusic.play();
 }
 
-void SoundManager::PlaySound(SoundToPlay p_sound)
+void SoundManager::PlaySound(SoundToPlay p_sound) //Jason - Added extra sounds
 {
 	switch (p_sound)
 	{
@@ -68,7 +68,7 @@ void SoundManager::PlaySound(SoundToPlay p_sound)
 
 }
 
-void SoundManager::PlaySoundAtLocation(SoundToPlay p_sound, sf::Vector3f p_location)
+void SoundManager::PlaySoundAtLocation(SoundToPlay p_sound, sf::Vector3f p_location) //Jason added extra sounds to play
 {
 	switch (p_sound)
 	{

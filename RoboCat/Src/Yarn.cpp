@@ -64,7 +64,7 @@ uint32_t Yarn::Write( OutputMemoryBitStream& inOutputStream, uint32_t inDirtySta
 		inOutputStream.Write( (bool)false );
 	}
 
-	if (inDirtyState & EYRS_BulletId)
+	if (inDirtyState & EYRS_BulletId) //Jason - Writes bullet ID
 	{
 		inOutputStream.Write((bool)true);
 
@@ -99,7 +99,7 @@ void Yarn::InitFromShooter( RoboCat* inShooter )//Jason - Set bullet texture bas
 {
 	SetColor( inShooter->GetColor() );
 	SetPlayerId( inShooter->GetPlayerId() );
-	SetTankType(inShooter->GetTankType());
+	SetTankType(inShooter->GetTankType()); //Jason - Gets tank type so we can change bullet type
 
 	FindBulletID(mTankType);
 
@@ -117,7 +117,7 @@ void Yarn::InitFromShooter( RoboCat* inShooter )//Jason - Set bullet texture bas
 	SetRotation( inShooter->GetRotation() );
 }
 
-void Yarn::FindBulletID(uint8_t tankType) {
+void Yarn::FindBulletID(uint8_t tankType) { //Jason - sets ID for bullet to send over network
 	switch (tankType)
 	{
 	case 0:

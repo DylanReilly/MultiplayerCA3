@@ -76,11 +76,9 @@ void RoboCat::ProcessInput( float inDeltaTime, const InputState& inInputState )
 
 void RoboCat::AdjustVelocityByThrust( float inDeltaTime )
 {
-	//just set the velocity based on the thrust direction -- no thrust will lead to 0 velocity
-	//simulating acceleration makes the client prediction a bit more complex
-	Vector3 forwardVector = GetForwardVector();
-	//mVelocity = forwardVector * (mThrustDir * inDeltaTime * mMaxLinearSpeed);
-	mVelocity = Vector3(GetForwardVector().mX + (mThrustDir.x * inDeltaTime * mMaxLinearSpeed), GetForwardVector().mY + (mThrustDir.y * inDeltaTime * mMaxLinearSpeed), GetForwardVector().mZ);
+	//Dylan - moves tank in the direction it is facing
+	Vector3 forwardVector = GetForwardRadianVector();
+	mVelocity = forwardVector * ((mThrustDir.x * inDeltaTime * mMaxLinearSpeed) * -1, (mThrustDir.y * inDeltaTime * mMaxLinearSpeed) * -1);
 }
 
 void RoboCat::SimulateMovement( float inDeltaTime )

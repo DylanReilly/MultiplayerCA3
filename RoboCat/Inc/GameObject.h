@@ -42,6 +42,7 @@ public:
 			void		SetCollisionRadius( float inRadius )			{ mCollisionRadius = inRadius; }
 
 			Vector3		GetForwardVector()			const;
+			Vector3		GetForwardRadianVector()	const;
 
 
 			void		SetColor( const Vector3& inColor )					{ mColor = inColor; }

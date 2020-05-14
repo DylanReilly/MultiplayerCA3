@@ -11,7 +11,9 @@ SFTextureManager::SFTextureManager()
 {
 	CacheTexture("cat", "../Assets/cat.png");
 	CacheTexture("pickup", "../Assets/random.png");
-	CacheTexture("bullet", "../Assets/HeavyBullet.png");
+	CacheTexture("bullet", "../Assets/TankBullet.png");
+	CacheTexture("heavy_bullet", "../Assets/HeavyBullet.png");
+	CacheTexture("tesla_bullet", "../Assets/TeslaBullet.png");
 	CacheTexture("tile", "../Assets/tile.png");
 	CacheTexture("wood", "../Assets/wood.png");
 	CacheTexture("stone", "../Assets/stone.png");

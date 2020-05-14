@@ -11,7 +11,7 @@ void MouseServer::HandleDying()
 }
 
 
-bool MouseServer::HandleCollisionWithCat( RoboCat* inCat )
+bool MouseServer::HandleCollisionWithCat( RoboCat* inCat ) //Jason - When player hits pickup it generates a random effect.
 {
 	if (!picked)
 	{
@@ -39,10 +39,10 @@ bool MouseServer::HandleCollisionWithCat( RoboCat* inCat )
 
 		// Hacked in here.d
 		int ECRS_Health = 1 << 3;
-		NetworkManagerServer::sInstance->SetStateDirty(inCat->GetNetworkId(), ECRS_Health);
+		NetworkManagerServer::sInstance->SetStateDirty(inCat->GetNetworkId(), ECRS_Health); //Sends new health value
 
 		int ECRS_TankType = 1 << 4;
-		NetworkManagerServer::sInstance->SetStateDirty(inCat->GetNetworkId(), ECRS_TankType);
+		NetworkManagerServer::sInstance->SetStateDirty(inCat->GetNetworkId(), ECRS_TankType); //Sends new tank type
 	}
 	//kill yourself!
 	SetDoesWantToDie( true );

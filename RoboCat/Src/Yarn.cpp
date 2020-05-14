@@ -3,7 +3,9 @@
 Yarn::Yarn() :
 	mMuzzleSpeed( 400.f ),
 	mVelocity( Vector3::Zero ),
-	mPlayerId( 0 )
+	mPlayerId( 0 ),
+	mTankType(0),
+	mBulletId(0)
 {
 	SetScale( GetScale() * .02f );
 	SetCollisionRadius( 15.f );
@@ -62,6 +64,19 @@ uint32_t Yarn::Write( OutputMemoryBitStream& inOutputStream, uint32_t inDirtySta
 		inOutputStream.Write( (bool)false );
 	}
 
+	if (inDirtyState & EYRS_BulletId)
+	{
+		inOutputStream.Write((bool)true);
+
+		inOutputStream.Write(mBulletId, 4);
+
+		writtenState |= EYRS_BulletId;
+	}
+	else
+	{
+		inOutputStream.Write((bool)false);
+	}
+
 
 
 
@@ -79,14 +94,14 @@ bool Yarn::HandleCollisionWithCat( RoboCat* inCat )
 	return false;
 }
 
-//Kevin
-//Rather than using the normalised velocity of the player to get the direction the yarn now 
-//finds the direction the player is pointing by using the players rotation.
-void Yarn::InitFromShooter( RoboCat* inShooter )
+
+void Yarn::InitFromShooter( RoboCat* inShooter )//Jason - Set bullet texture based off of tank type
 {
 	SetColor( inShooter->GetColor() );
 	SetPlayerId( inShooter->GetPlayerId() );
-	
+	SetTankType(inShooter->GetTankType());
+
+	FindBulletID(mTankType);
 
 	Vector3 forward = inShooter->GetForwardVector();
 	Vector3 vel = inShooter->GetVelocity();
@@ -100,6 +115,27 @@ void Yarn::InitFromShooter( RoboCat* inShooter )
 	SetLocation( inShooter->GetLocation() /*+ Vector3(temp.x,temp.y,0) * 0.55f*/ );
 
 	SetRotation( inShooter->GetRotation() );
+}
+
+void Yarn::FindBulletID(uint8_t tankType) {
+	switch (tankType)
+	{
+	case 0:
+		SetBulletID(0);
+		break;
+	case 1:
+		SetBulletID(1);
+		break;
+	case 2:
+		SetBulletID(2);
+		break;
+	case 3:
+		SetBulletID(3);
+		break;
+	default:
+		SetBulletID(0);
+		break;
+	}
 }
 
 void Yarn::Update()

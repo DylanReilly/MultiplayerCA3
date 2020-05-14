@@ -5,10 +5,12 @@ public:
 
 	virtual void		Read( InputMemoryBitStream& inInputStream ) override;
 	virtual bool		HandleCollisionWithCat( RoboCat* inCat ) override;
+	void				SetBulletTexture();
 
 protected:
 	YarnClient();
 
 private:
 	SFSpriteComponentPtr m_sprite;
+	uint8_t mBullet;
 };

@@ -4,13 +4,36 @@ YarnClient::YarnClient()
 {
 	SoundManager::sInstance->PlaySound(SoundManager::SoundToPlay::STP_Shoot);
 	m_sprite.reset(new SFSpriteComponent(this));
-	m_sprite->SetTexture(SFTextureManager::sInstance->GetTexture("bullet"));
+}
+
+void YarnClient::SetBulletTexture() {
+	uint8_t bulletId = Yarn::GetBulletId();
+
+	switch (bulletId)
+	{
+	case 0:
+		m_sprite->SetTexture(SFTextureManager::sInstance->GetTexture("bullet"));
+		break;
+	case 1:
+		m_sprite->SetTexture(SFTextureManager::sInstance->GetTexture("heavy_bullet"));
+		break;
+	case 2:
+		m_sprite->SetTexture(SFTextureManager::sInstance->GetTexture("bullet"));
+		break;
+	case 3:
+		m_sprite->SetTexture(SFTextureManager::sInstance->GetTexture("tesla_bullet"));
+		break;
+	default:
+		m_sprite->SetTexture(SFTextureManager::sInstance->GetTexture("bullet"));
+		break;
+	}
 }
 
 
 void YarnClient::Read( InputMemoryBitStream& inInputStream )
 {
 	bool stateBit;
+	uint32_t readState = 0;
 
 	inInputStream.Read( stateBit );
 	if( stateBit )
@@ -49,6 +72,15 @@ void YarnClient::Read( InputMemoryBitStream& inInputStream )
 		inInputStream.Read( mPlayerId, 8 );
 	}
 
+	inInputStream.Read(stateBit);
+	if (stateBit)
+	{
+		mBulletId = 0;
+		inInputStream.Read(mBulletId, 4);
+		readState |= EYRS_BulletId;
+	}
+
+	SetBulletTexture();
 }
 
 //you look like you hit a cat on the client, so disappear ( whether server registered or not

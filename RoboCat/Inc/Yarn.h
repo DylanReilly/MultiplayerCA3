@@ -9,8 +9,9 @@ public:
 		EYRS_Pose			= 1 << 0,
 		EYRS_Color			= 1 << 1,
 		EYRS_PlayerId		= 1 << 2,
+		EYRS_BulletId		= 1	<<	3,
 
-		EYRS_AllState	= EYRS_Pose | EYRS_Color | EYRS_PlayerId
+		EYRS_AllState	= EYRS_Pose | EYRS_Color | EYRS_PlayerId | EYRS_BulletId
 	};
 
 	static	GameObject*	StaticCreate() { return new Yarn(); }
@@ -23,9 +24,13 @@ public:
 	const Vector3&	GetVelocity() const					{ return mVelocity; }
 
 	void		SetPlayerId( int inPlayerId )	{ mPlayerId = inPlayerId; }
+	void		SetTankType(uint8_t tankType) { mTankType = tankType; }
 	int			GetPlayerId() const				{ return mPlayerId; }
+	uint8_t		GetBulletId() { return mBulletId; }
 
 	void		InitFromShooter( RoboCat* inShooter );
+	void		FindBulletID(uint8_t tankType);
+	void		SetBulletID(uint8_t bulletID) { mBulletId = bulletID; }
 
 	virtual void Update() override;
 
@@ -39,6 +44,8 @@ protected:
 
 	float		mMuzzleSpeed;
 	int			mPlayerId;
+	uint8_t		mTankType;
+	uint8_t		mBulletId;
 
 };
 

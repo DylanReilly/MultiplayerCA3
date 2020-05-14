@@ -36,7 +36,7 @@ void GameObject::SetRotation( float inRotation )
 	mRotation = inRotation;
 }
 
-void GameObject::SetRotation(sf::Int8 inRotation)
+void GameObject::SetRotation(uint8_t inRotation)
 {
 	GameObject::SetRotation(static_cast<float>(inRotation * 6));
 }

@@ -28,7 +28,7 @@ public:
 			int		GetIndexInWorld()				const				{ return mIndexInWorld; }
 
 			void	SetRotation( float inRotation );
-			void	SetRotation(sf::Int8 inRotation);
+			void	SetRotation(uint8_t inRotation);
 			float	GetRotation()					const				{ return mRotation; }
 
 			void	SetScale( float inScale )							{ mScale = inScale; }

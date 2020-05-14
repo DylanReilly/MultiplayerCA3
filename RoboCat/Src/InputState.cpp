@@ -28,12 +28,12 @@ namespace
 		}
 	}
 
-	void WriteNonBinaryValue(OutputMemoryBitStream& inOutputStream, sf::Int8 inValue)
+	void WriteNonBinaryValue(OutputMemoryBitStream& inOutputStream, uint8_t inValue)
 	{
 		inOutputStream.Write(inValue);
 	}
 
-	void ReadNonBinaryValue(InputMemoryBitStream& inInputStream, sf::Int8& outValue)
+	void ReadNonBinaryValue(InputMemoryBitStream& inInputStream, uint8_t& outValue)
 	{
 		float val;
 		inInputStream.Read(val);
@@ -46,7 +46,8 @@ bool InputState::Write( OutputMemoryBitStream& inOutputStream ) const
 	WriteSignedBinaryValue( inOutputStream, GetDesiredHorizontalDelta() );
 	WriteSignedBinaryValue( inOutputStream, GetDesiredVerticalDelta() );
 	//Dylan writes rotation to output stream
-	WriteNonBinaryValue(inOutputStream, GetDesiredRotation());
+	//WriteNonBinaryValue(inOutputStream, GetDesiredRotation());
+	inOutputStream.WriteBits(GetDesiredRotation(), 8);
 	inOutputStream.Write( mIsShooting );
 
 	return false;
@@ -58,7 +59,8 @@ bool InputState::Read( InputMemoryBitStream& inInputStream )
 	ReadSignedBinaryValue( inInputStream, mDesiredRightAmount );
 	ReadSignedBinaryValue( inInputStream, mDesiredForwardAmount );
 	//Dylan reads rotation from output stream
-    ReadNonBinaryValue(inInputStream, mDesiredRotation);
+    //ReadNonBinaryValue(inInputStream, mDesiredRotation);
+	inInputStream.ReadBits(mDesiredRotation, 8);
 	inInputStream.Read( mIsShooting );
 
 	return true;

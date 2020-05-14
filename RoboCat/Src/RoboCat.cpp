@@ -47,9 +47,10 @@ void RoboCat::ProcessInput( float inDeltaTime, const InputState& inInputState )
 	mThrustDir.x = inputHorizontalDelta;
 	float inputForwardDelta = inInputState.GetDesiredVerticalDelta();
 	mThrustDir.y = -inputForwardDelta;
+	float rotation = inInputState.GetDesiredRotation();
 
 	
-	if (mThrustDir.x == 1 && mThrustDir.y == 1)
+	/*if (mThrustDir.x == 1 && mThrustDir.y == 1)
 		rot = NE;
 	else if (mThrustDir.x == 1 && mThrustDir.y == -1)
 		rot = NW;
@@ -66,8 +67,9 @@ void RoboCat::ProcessInput( float inDeltaTime, const InputState& inInputState )
 	else if (mThrustDir.x == 0 && mThrustDir.y == -1)
 		rot = W;
 	
-	if (rot != -1)
-		SetRotation(rot);
+	if (rot != -1)*/
+	//Dylan - Sets tank rotation
+		SetRotation(rotation);
 
 	mIsShooting = inInputState.IsShooting();
 }

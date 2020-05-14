@@ -38,6 +38,19 @@ namespace
 			ioVariable = 0.f;
 		}
 	}
+
+	//Dylan - Updates rotationon keypress
+	inline void UpdateDesireRotationFromKey(EInputAction inInputAction, float& ioVariable, int inKeyCode)
+	{
+		if (inInputAction == EIA_Pressed && inKeyCode == sf::Keyboard::A)
+		{
+			ioVariable -= 5.f;
+		}
+		else if (inInputAction == EIA_Pressed && inKeyCode == sf::Keyboard::D)
+		{
+			ioVariable += 5.f;
+		}
+	}
 }
 
 void InputManager::HandleInput( EInputAction inInputAction, int inKeyCode )
@@ -45,10 +58,10 @@ void InputManager::HandleInput( EInputAction inInputAction, int inKeyCode )
 	switch( inKeyCode )
 	{
 	case sf::Keyboard::A:
-		UpdateDesireFloatFromKey( inInputAction, mCurrentState.mDesiredLeftAmount );
+		UpdateDesireRotationFromKey( inInputAction, mCurrentState.mDesiredRotation, inKeyCode);
 		break;
 	case sf::Keyboard::D:
-		UpdateDesireFloatFromKey( inInputAction, mCurrentState.mDesiredRightAmount );
+		UpdateDesireRotationFromKey( inInputAction, mCurrentState.mDesiredRotation, inKeyCode);
 		break;
 	case sf::Keyboard::W:
 		UpdateDesireFloatFromKey( inInputAction, mCurrentState.mDesiredForwardAmount );

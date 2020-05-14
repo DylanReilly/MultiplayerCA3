@@ -28,12 +28,12 @@ namespace
 		}
 	}
 
-	void WriteNonBinaryValue(OutputMemoryBitStream& inOutputStream, float inValue)
+	void WriteNonBinaryValue(OutputMemoryBitStream& inOutputStream, sf::Int8 inValue)
 	{
 		inOutputStream.Write(inValue);
 	}
 
-	void ReadNonBinaryValue(InputMemoryBitStream& inInputStream, float& outValue)
+	void ReadNonBinaryValue(InputMemoryBitStream& inInputStream, sf::Int8& outValue)
 	{
 		float val;
 		inInputStream.Read(val);

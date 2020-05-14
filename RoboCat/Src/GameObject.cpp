@@ -35,3 +35,8 @@ void GameObject::SetRotation( float inRotation )
 	//should we normalize using fmodf?
 	mRotation = inRotation;
 }
+
+void GameObject::SetRotation(sf::Int8 inRotation)
+{
+	GameObject::SetRotation(static_cast<float>(inRotation * 6));
+}

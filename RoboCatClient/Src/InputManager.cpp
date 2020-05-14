@@ -40,15 +40,29 @@ namespace
 	}
 
 	//Dylan - Updates rotationon keypress
-	inline void UpdateDesireRotationFromKey(EInputAction inInputAction, float& ioVariable, int inKeyCode)
+	inline void UpdateDesireRotationFromKey(EInputAction inInputAction, sf::Int8& ioVariable, int inKeyCode)
 	{
 		if (inInputAction == EIA_Pressed && inKeyCode == sf::Keyboard::A)
 		{
-			ioVariable -= 5.f;
+			if (ioVariable == 0)
+			{
+				ioVariable = 59;
+			}
+			else
+			{
+				ioVariable -= 1;
+			}
 		}
 		else if (inInputAction == EIA_Pressed && inKeyCode == sf::Keyboard::D)
 		{
-			ioVariable += 5.f;
+			if (ioVariable == 59)
+			{
+				ioVariable = 0;
+			}
+			else
+			{
+				ioVariable += 1;
+			}
 		}
 	}
 }

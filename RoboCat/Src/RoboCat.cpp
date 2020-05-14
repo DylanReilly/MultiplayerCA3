@@ -47,7 +47,7 @@ void RoboCat::ProcessInput( float inDeltaTime, const InputState& inInputState )
 	mThrustDir.x = inputHorizontalDelta;
 	float inputForwardDelta = inInputState.GetDesiredVerticalDelta();
 	mThrustDir.y = -inputForwardDelta;
-	float rotation = inInputState.GetDesiredRotation();
+	sf::Int8 rotation = inInputState.GetDesiredRotation();
 
 	
 	/*if (mThrustDir.x == 1 && mThrustDir.y == 1)

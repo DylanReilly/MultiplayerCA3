@@ -26,6 +26,6 @@ private:
 
 	float	mDesiredRightAmount, mDesiredLeftAmount;
 	float	mDesiredForwardAmount, mDesiredBackAmount;
-	float	mDesiredRotation;
+	sf::Int8	mDesiredRotation;
 	bool	mIsShooting;
 };

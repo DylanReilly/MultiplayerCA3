@@ -27,6 +27,7 @@ namespace
 			outValue = 0.f;
 		}
 	}
+}
 
 bool InputState::Write( OutputMemoryBitStream& inOutputStream ) const
 {

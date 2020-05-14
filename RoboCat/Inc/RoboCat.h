@@ -69,7 +69,7 @@ protected:
 	
 	float				mLastMoveTimestamp;
 
-	sf::Vector2f		mThrustDir;
+	sf::Vector3f		mThrustDir;
 	uint8_t					mHealth;
 	uint8_t					mTankType;
 

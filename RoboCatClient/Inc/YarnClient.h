@@ -6,6 +6,7 @@ public:
 	virtual void		Read( InputMemoryBitStream& inInputStream ) override;
 	virtual bool		HandleCollisionWithCat( RoboCat* inCat ) override;
 	void				SetBulletTexture();
+	void				PlayBulletSound();
 
 protected:
 	YarnClient();

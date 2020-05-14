@@ -10,7 +10,9 @@ void SoundManager::StaticInit()
 SoundManager::SoundManager()
 {
 	LoadSoundFromFile(pickup, pickupB, "../Assets/TankVTank_Media/Sound/CollectPickup.wav");
-	LoadSoundFromFile(shoot, shootB, "../Assets/TankVTank_Media/Sound/TankCannon1.wav");
+	LoadSoundFromFile(shoot, shootB, "../Assets/TankVTank_Media/Sound/TankLMG.wav");
+	LoadSoundFromFile(heavyS, shootH, "../Assets/TankVTank_Media/Sound/TankCannon1.wav");
+	LoadSoundFromFile(teslaS, shootT, "../Assets/TankVTank_Media/Sound/TeslaShot.wav");
 	LoadSoundFromFile(death, deathB, "../Assets/audio/death.wav");
 	LoadSoundFromFile(join, joinB, "../Assets/audio/join.wav");
 	LoadMusicFromFile(bgMusic, "../Assets/TankVTank_Media/Music/MenuTheme.ogg");
@@ -56,7 +58,14 @@ void SoundManager::PlaySound(SoundToPlay p_sound)
 		join.setRelativeToListener(true);
 		join.play();
 		break;
+	case SoundManager::STP_HvyS:
+		heavyS.play();
+		break;
+	case SoundManager::STP_TesS:
+		teslaS.play();
+		break;
 	}
+
 }
 
 void SoundManager::PlaySoundAtLocation(SoundToPlay p_sound, sf::Vector3f p_location)
@@ -67,6 +76,16 @@ void SoundManager::PlaySoundAtLocation(SoundToPlay p_sound, sf::Vector3f p_locat
 		shoot.setAttenuation(0.15);
 		shoot.setPosition(p_location);
 		shoot.play();
+		break;
+	case SoundManager::STP_HvyS:
+		heavyS.setAttenuation(0.15);
+		heavyS.setPosition(p_location);
+		heavyS.play();
+		break;
+	case SoundManager::STP_TesS:
+		teslaS.setAttenuation(0.15);
+		teslaS.setPosition(p_location);
+		teslaS.play();
 		break;
 	}
 }

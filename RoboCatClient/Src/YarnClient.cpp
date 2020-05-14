@@ -2,7 +2,7 @@
 
 YarnClient::YarnClient()
 {
-	SoundManager::sInstance->PlaySound(SoundManager::SoundToPlay::STP_Shoot);
+	//SoundManager::sInstance->PlaySound(SoundManager::SoundToPlay::STP_Shoot);
 	m_sprite.reset(new SFSpriteComponent(this));
 }
 
@@ -81,6 +81,31 @@ void YarnClient::Read( InputMemoryBitStream& inInputStream )
 	}
 
 	SetBulletTexture();
+	PlayBulletSound();
+}
+
+void YarnClient::PlayBulletSound() {
+	uint8_t bulletId = Yarn::GetBulletId();
+
+	switch (bulletId)
+	{
+	case 0:
+		SoundManager::sInstance->PlaySound(SoundManager::SoundToPlay::STP_Shoot);
+		break;
+	case 1:
+		SoundManager::sInstance->PlaySound(SoundManager::SoundToPlay::STP_HvyS);
+		break;
+	case 2:
+		SoundManager::sInstance->PlaySound(SoundManager::SoundToPlay::STP_Shoot);
+		break;
+	case 3:
+		SoundManager::sInstance->PlaySound(SoundManager::SoundToPlay::STP_TesS);
+		break;
+	default:
+		break;
+	}
+
+	
 }
 
 //you look like you hit a cat on the client, so disappear ( whether server registered or not

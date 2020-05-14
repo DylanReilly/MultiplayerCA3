@@ -38,19 +38,6 @@ namespace
 			ioVariable = 0.f;
 		}
 	}
-
-	//Dylan - Increases or decreases tank rotation on keypress
-	inline void UpdateDesireRotationFromKey(EInputAction inInputAction, float& ioVariable, int keycode)
-	{
-		if (inInputAction == EIA_Pressed && keycode == sf::Keyboard::A)
-		{
-			ioVariable += 1.f;
-		}
-		else if (inInputAction == EIA_Released && keycode == sf::Keyboard::D)
-		{
-			ioVariable -= 1.f;
-		}
-	}
 }
 
 void InputManager::HandleInput( EInputAction inInputAction, int inKeyCode )
@@ -58,10 +45,10 @@ void InputManager::HandleInput( EInputAction inInputAction, int inKeyCode )
 	switch( inKeyCode )
 	{
 	case sf::Keyboard::A:
-		UpdateDesireRotationFromKey( inInputAction, mCurrentState.mDesiredRotation, inKeyCode );
+		UpdateDesireFloatFromKey( inInputAction, mCurrentState.mDesiredLeftAmount );
 		break;
 	case sf::Keyboard::D:
-		UpdateDesireRotationFromKey( inInputAction, mCurrentState.mDesiredRotation, inKeyCode);
+		UpdateDesireFloatFromKey( inInputAction, mCurrentState.mDesiredRightAmount );
 		break;
 	case sf::Keyboard::W:
 		UpdateDesireFloatFromKey( inInputAction, mCurrentState.mDesiredForwardAmount );

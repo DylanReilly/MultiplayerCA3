@@ -11,7 +11,7 @@ RoboCat::RoboCat() :
 	mVelocity( Vector3::Zero ),
 	mWallRestitution( 0.1f ),
 	mCatRestitution( 0.1f ),
-	mThrustDir( sf::Vector3f(0.f, 0.f, 0.f) ),
+	mThrustDir( sf::Vector2f(0.f, 0.f) ),
 	mPlayerId( 0 ),
 	mIsShooting( false ),
 	mHealth( 10 ),
@@ -24,7 +24,7 @@ void RoboCat::ProcessInput( float inDeltaTime, const InputState& inInputState )
 {
 	//process our input....
 
-	//int rot = -1;
+	int rot = -1;
 	int W = 0;
 	int NW = 45;
 	int N = 90;
@@ -47,11 +47,9 @@ void RoboCat::ProcessInput( float inDeltaTime, const InputState& inInputState )
 	mThrustDir.x = inputHorizontalDelta;
 	float inputForwardDelta = inInputState.GetDesiredVerticalDelta();
 	mThrustDir.y = -inputForwardDelta;
-	float rotation = inInputState.GetDesiredRotation();
-	mThrustDir.z = rotation;
 
 	
-	/*if (mThrustDir.x == 1 && mThrustDir.y == 1)
+	if (mThrustDir.x == 1 && mThrustDir.y == 1)
 		rot = NE;
 	else if (mThrustDir.x == 1 && mThrustDir.y == -1)
 		rot = NW;
@@ -66,11 +64,10 @@ void RoboCat::ProcessInput( float inDeltaTime, const InputState& inInputState )
 	else if (mThrustDir.x == 0 && mThrustDir.y == 1)
 		rot = E;
 	else if (mThrustDir.x == 0 && mThrustDir.y == -1)
-		rot = W;*/
+		rot = W;
 	
-	//if (rot != -1)
-	//Dylan - updates rotation
-		SetRotation(rotation);
+	if (rot != -1)
+		SetRotation(rot);
 
 	mIsShooting = inInputState.IsShooting();
 }
@@ -91,7 +88,6 @@ void RoboCat::SimulateMovement( float inDeltaTime )
 	
 	// Replace with a "TryMove" that preemptively checks for collisions.
 	TryMove(mVelocity * inDeltaTime);
-	
 	//SetLocation( GetLocation() + mVelocity * inDeltaTime );
 
 	// Will encompass the collisions with everything except the walls.
@@ -114,7 +110,6 @@ void RoboCat::TryMove(Vector3 p_move)
 	Vector3 playerPosition = GetLocation();
 	sf::FloatRect player(playerPosition.mX - (size / 2), playerPosition.mY - (size / 2), size, size);
 
-	
 	player.left += move.x;
 	player.top += move.y;
 
@@ -258,7 +253,7 @@ uint32_t RoboCat::Write( OutputMemoryBitStream& inOutputStream, uint32_t inDirty
 	}
 
 	//always write mThrustDir- it's just two bits
-	if( mThrustDir != sf::Vector3f(0.f,0.f,0.f))
+	if( mThrustDir != sf::Vector2f(0.f,0.f))
 	{
 		inOutputStream.Write( true );
 		inOutputStream.Write(mThrustDir.x > 0.f);

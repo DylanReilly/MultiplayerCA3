@@ -31,10 +31,8 @@ namespace
 
 bool InputState::Write( OutputMemoryBitStream& inOutputStream ) const
 {
-	sf::Vector2f pos(GetDesiredPosition());
-	WriteSignedBinaryValue( inOutputStream, pos.x );
-	WriteSignedBinaryValue( inOutputStream, pos.y );
-	WriteSignedBinaryValue( inOutputStream, GetDesiredRotation());
+	WriteSignedBinaryValue( inOutputStream, GetDesiredHorizontalDelta() );
+	WriteSignedBinaryValue( inOutputStream, GetDesiredVerticalDelta() );
 	inOutputStream.Write( mIsShooting );
 
 	return false;
@@ -45,7 +43,6 @@ bool InputState::Read( InputMemoryBitStream& inInputStream )
 	
 	ReadSignedBinaryValue( inInputStream, mDesiredRightAmount );
 	ReadSignedBinaryValue( inInputStream, mDesiredForwardAmount );
-	ReadSignedBinaryValue( inInputStream, mDesiredRotation );
 	inInputStream.Read( mIsShooting );
 
 	return true;

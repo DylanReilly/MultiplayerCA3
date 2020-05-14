@@ -10,8 +10,9 @@ public:
 		ECRS_PlayerId = 1 << 2,
 		ECRS_Health = 1 << 3,
 		ECRS_TankType = 1<<4,
+		ECRS_TankVersion = 1<<5,
 
-		ECRS_AllState = ECRS_Pose | ECRS_Color | ECRS_PlayerId | ECRS_Health | ECRS_TankType
+		ECRS_AllState = ECRS_Pose | ECRS_Color | ECRS_PlayerId | ECRS_Health | ECRS_TankType | ECRS_TankVersion
 	};
 
 
@@ -32,6 +33,8 @@ public:
 	uint32_t		GetPlayerId()						const 	{ return mPlayerId; }
 	void			SetTankType(int tankType) { mTankType = tankType; }
 	uint8_t&		GetTankType() { return mTankType; };
+	void			SetTankVersion(int tankVersion) { mTankVersion = tankVersion; }
+	uint8_t&		GetTankVersion() { return mTankVersion; };
 
 	void			SetVelocity( const Vector3& inVelocity )	{ mVelocity = inVelocity; }
 	const Vector3&	GetVelocity()						const	{ return mVelocity; }
@@ -72,6 +75,7 @@ protected:
 	sf::Vector2f		mThrustDir;
 	uint8_t					mHealth;
 	uint8_t					mTankType;
+	uint8_t					mTankVersion;
 
 	bool				mIsShooting;
 

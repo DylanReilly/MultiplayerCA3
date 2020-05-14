@@ -15,7 +15,8 @@ RoboCat::RoboCat() :
 	mPlayerId( 0 ),
 	mIsShooting( false ),
 	mHealth( 10 ),
-	mTankType(0)
+	mTankType(0),
+	mTankVersion(0)
 {
 	SetCollisionRadius( 20.f );
 }
@@ -294,6 +295,18 @@ uint32_t RoboCat::Write( OutputMemoryBitStream& inOutputStream, uint32_t inDirty
 		inOutputStream.Write(mTankType, 4);
 
 		writtenState |= ECRS_TankType;
+	}
+	else
+	{
+		inOutputStream.Write((bool)false);
+	}
+
+	if (inDirtyState & ECRS_TankVersion)
+	{
+		inOutputStream.Write((bool)true);
+		inOutputStream.Write(mTankVersion, 4);
+
+		writtenState |= ECRS_TankVersion;
 	}
 	else
 	{

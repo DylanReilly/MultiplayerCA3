@@ -1,4 +1,5 @@
 #include <RoboCatPCH.h>
+#include <cmath>
 
 Yarn::Yarn() :
 	mMuzzleSpeed( 400.f ),
@@ -94,7 +95,6 @@ bool Yarn::HandleCollisionWithCat( RoboCat* inCat )
 	return false;
 }
 
-
 void Yarn::InitFromShooter( RoboCat* inShooter )//Jason - Set bullet texture based off of tank type
 {
 	SetColor( inShooter->GetColor() );
@@ -103,15 +103,17 @@ void Yarn::InitFromShooter( RoboCat* inShooter )//Jason - Set bullet texture bas
 
 	FindBulletID(mTankType);
 
-	Vector3 forward = inShooter->GetForwardVector();
-	Vector3 vel = inShooter->GetVelocity();
-	auto normVel = thor::unitVector(sf::Vector2f(vel.mX, vel.mY));
+	//Dylan - fixed projectiles shooting in the correct direction, don't what the hell that "thor" thing did
+	Vector3 forward = inShooter->GetForwardRadianVector();
+	//Vector3 vel = inShooter->GetVelocity();
+	//sf::Vector2f normVel = thor::unitVector(sf::Vector2f(vel.mX, vel.mY));
+	//Vector3 normVel = unitVector(vel);
 	sf::Vector2f temp = sf::Vector2f(0, -1);
-	thor::rotate(temp, inShooter->GetRotation());
+	//thor::rotate(temp, inShooter->GetRotation());
 
-	//SetVelocity(Vector3(normVel.x, normVel.y, 0) * mMuzzleSpeed);
-	
-	SetVelocity(Vector3(temp.x, temp.y, 0) * mMuzzleSpeed);
+	//SetVelocity(normVel * mMuzzleSpeed);
+	SetVelocity(forward * mMuzzleSpeed);
+	//SetVelocity(Vector3(temp.x, temp.y, 0) * mMuzzleSpeed);
 	SetLocation( inShooter->GetLocation() /*+ Vector3(temp.x,temp.y,0) * 0.55f*/ );
 
 	SetRotation( inShooter->GetRotation() );

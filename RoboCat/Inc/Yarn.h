@@ -28,6 +28,8 @@ public:
 	int			GetPlayerId() const				{ return mPlayerId; }
 	uint8_t		GetBulletId() { return mBulletId; }
 
+	void		SetOffSet(float offset) { mOffSet = offset; }
+
 	void		InitFromShooter( RoboCat* inShooter );
 	void		FindBulletID(uint8_t tankType);
 	void		SetBulletID(uint8_t bulletID) { mBulletId = bulletID; }
@@ -46,6 +48,7 @@ protected:
 	int			mPlayerId;
 	uint8_t		mTankType;
 	uint8_t		mBulletId;
+	float		mOffSet;
 
 };
 

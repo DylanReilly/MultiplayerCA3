@@ -30,6 +30,13 @@ Vector3 GameObject::GetForwardRadianVector()	const
 	//Vector3 newPos(playerPosition.mX + (1 * sin((3.141f / 180.f) * GetRotation()) ), playerPosition.mY + (1 * -cos((3.141f / 180.f) * GetRotation())), playerPosition.mZ);
 }
 
+Vector3 GameObject::GetForwardRadianVectorOffset(float offset)	const
+{
+	//should we cache this when you turn?
+	return Vector3(sin((3.141f / 180.f) * mRotation)+offset, -cosf((3.141f / 180.f) * mRotation), 0.f);
+	//Vector3 newPos(playerPosition.mX + (1 * sin((3.141f / 180.f) * GetRotation()) ), playerPosition.mY + (1 * -cos((3.141f / 180.f) * GetRotation())), playerPosition.mZ);
+}
+
 void GameObject::SetNetworkId( int inNetworkId )
 { 
 	//this doesn't put you in the map or remove you from it

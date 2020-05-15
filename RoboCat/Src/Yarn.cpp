@@ -10,6 +10,7 @@ Yarn::Yarn() :
 {
 	SetScale( GetScale() * .02f );
 	SetCollisionRadius( 15.f );
+	SetRotation(GetRotation());
 }
 
 
@@ -114,9 +115,8 @@ void Yarn::InitFromShooter( RoboCat* inShooter )//Jason - Set bullet texture bas
 	//SetVelocity(normVel * mMuzzleSpeed);
 	SetVelocity(forward * mMuzzleSpeed);
 	//SetVelocity(Vector3(temp.x, temp.y, 0) * mMuzzleSpeed);
-	SetLocation( inShooter->GetLocation() /*+ Vector3(temp.x,temp.y,0) * 0.55f*/ );
-
-	SetRotation( inShooter->GetRotation() );
+	SetLocation( inShooter->GetLocation() + GetForwardRadianVectorOffset(mOffSet) /*+ Vector3(temp.x,temp.y,0) * 0.55f*/ );
+	SetRotation( inShooter->GetRotation());
 }
 
 void Yarn::FindBulletID(uint8_t tankType) { //Jason - sets ID for bullet to send over network

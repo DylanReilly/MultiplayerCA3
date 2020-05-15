@@ -43,6 +43,7 @@ public:
 
 			Vector3		GetForwardVector()			const;
 			Vector3		GetForwardRadianVector()	const;
+			Vector3		GetForwardRadianVectorOffset(float offset)	const;
 
 
 			void		SetColor( const Vector3& inColor )					{ mColor = inColor; }

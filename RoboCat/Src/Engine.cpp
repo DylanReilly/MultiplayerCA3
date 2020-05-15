@@ -1,6 +1,6 @@
 #include <RoboCatPCH.h>
 #include <time.h>
-#include <SDL.h>
+//#include <SDL.h>
 
 std::unique_ptr< Engine >	Engine::sInstance;
 
@@ -27,7 +27,7 @@ Engine::~Engine()
 {
 	SocketUtil::CleanUp();
 
-	SDL_Quit();
+	//SDL_Quit();
 }
 
 

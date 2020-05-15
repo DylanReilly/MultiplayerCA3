@@ -7,8 +7,11 @@ RoboCatClient::RoboCatClient() :
 	mTimeLocationBecameOutOfSync( 0.f ),
 	mTimeVelocityBecameOutOfSync( 0.f ),
 	m_textureIsDirty(true),
+	m_versionIsDirty(true),
 	mTankType(0),
-	mPrevTankType(20)
+	mTankVersion(0),
+	mPrevTankType(20),
+	mPrevTankVersion(20)
 {
 	m_sprite.reset(new SFSpriteComponent(this));
 
@@ -16,6 +19,7 @@ RoboCatClient::RoboCatClient() :
 	m_healthSprite.reset(new SFHealthSpriteComponent(this));
 
 	mTankType = RoboCat::GetTankType();
+	mTankVersion = RoboCat::GetTankVersion();
 }
 
 void RoboCatClient::HandleDying()
@@ -37,12 +41,22 @@ void RoboCatClient::Update()
 		mPrevTankType = mTankType;
 	}
 
+	if (mTankVersion != mPrevTankVersion) {
+		m_versionIsDirty = true;
+		mPrevTankVersion = mTankVersion;
+	}
 	// Check if we need to set the texture.
-	if (m_textureIsDirty)
+	if (m_textureIsDirty || m_versionIsDirty)
 	{
-		m_sprite->SetTexture(PlayerTextureGenerator::sInstance->GetPlayerTexure(GetPlayerId(), mTankType));
+		m_sprite->SetTexture(PlayerTextureGenerator::sInstance->GetPlayerTexure(GetPlayerId(), mTankType, mTankVersion));
 		m_textureIsDirty = false;
 	}
+
+	/*if (m_versionIsDirty)
+	{
+		m_sprite->SetTexture(PlayerTextureGenerator::sInstance->GetPlayerTexure(GetPlayerId(), mTankVersion));
+		m_versionIsDirty = false;
+	}*/
 
 	//is this the cat owned by us?
 	if( GetPlayerId() == NetworkManagerClient::sInstance->GetPlayerId() )
@@ -159,6 +173,14 @@ void RoboCatClient::Read( InputMemoryBitStream& inInputStream )
 		mTankType = 0;
 		inInputStream.Read(mTankType, 4);
 		readState |= ECRS_TankType;
+	}
+
+	inInputStream.Read(stateBit);
+	if (stateBit)
+	{
+		mTankVersion = 0;
+		inInputStream.Read(mTankVersion, 4);
+		readState |= ECRS_TankVersion;
 	}
 
 	if( GetPlayerId() == NetworkManagerClient::sInstance->GetPlayerId() )

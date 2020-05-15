@@ -46,18 +46,27 @@ SFTextureManager::SFTextureManager()
 
 	//Green Tank Heavy Variant
 	CacheTexture("GreenHvy1", "../Assets/TankVTank_Media/Textures/Tanks/tank-4.png");
+	CacheTexture("GreenHvy1V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-4-3.png");
 	CacheTexture("GreenHvy2", "../Assets/TankVTank_Media/Textures/Tanks/tank-5.png");
+	CacheTexture("GreenHvy2V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-5-3.png");
 	CacheTexture("GreenHvy3", "../Assets/TankVTank_Media/Textures/Tanks/tank-6.png");
+	CacheTexture("GreenHvy3V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-6-3.png");
 
 	//Green Tank Gatling Varient
 	CacheTexture("GreenGat1", "../Assets/TankVTank_Media/Textures/Tanks/tank-7.png");
+	CacheTexture("GreenGat1V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-7-3.png");
 	CacheTexture("GreenGat2", "../Assets/TankVTank_Media/Textures/Tanks/tank-8.png");
+	CacheTexture("GreenGat2V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-8-3.png");
 	CacheTexture("GreenGat3", "../Assets/TankVTank_Media/Textures/Tanks/tank-9.png");
+	CacheTexture("GreenGat3V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-9-3.png");
 
 	//Green Tank Tesla Varient
 	CacheTexture("GreenTes1", "../Assets/TankVTank_Media/Textures/Tanks/tank-10.png");
+	CacheTexture("GreenTes1V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-10-3.png");
 	CacheTexture("GreenTes2", "../Assets/TankVTank_Media/Textures/Tanks/tank-11.png");
+	CacheTexture("GreenTes2V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-11-3.png");
 	CacheTexture("GreenTes3", "../Assets/TankVTank_Media/Textures/Tanks/tank-12.png");
+	CacheTexture("GreenTes3V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-12-3.png");
 
 
 
@@ -70,18 +79,27 @@ SFTextureManager::SFTextureManager()
 
 	//Red Tank Heavy Varient
 	CacheTexture("RedHvy1", "../Assets/TankVTank_Media/Textures/Tanks/tank-16.png");
+	CacheTexture("RedHvy1V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-16-3.png");
 	CacheTexture("RedHvy2", "../Assets/TankVTank_Media/Textures/Tanks/tank-17.png");
+	CacheTexture("RedHvy2V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-17-3.png");
 	CacheTexture("RedHvy3", "../Assets/TankVTank_Media/Textures/Tanks/tank-18.png");
+	CacheTexture("RedHvy3V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-18-3.png");
 
 	//Red Tank Gatling Varient
 	CacheTexture("RedGat1", "../Assets/TankVTank_Media/Textures/Tanks/tank-19.png");
+	CacheTexture("RedGat1V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-19-3.png");
 	CacheTexture("RedGat2", "../Assets/TankVTank_Media/Textures/Tanks/tank-20.png");
+	CacheTexture("RedGat2V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-20-3.png");
 	CacheTexture("RedGat3", "../Assets/TankVTank_Media/Textures/Tanks/tank-21.png");
+	CacheTexture("RedGat3V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-21-3.png");
 
 	//Red Tank Tesla Varient
 	CacheTexture("RedTes1", "../Assets/TankVTank_Media/Textures/Tanks/tank-22.png");
+	CacheTexture("RedTes1V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-22-3.png");
 	CacheTexture("RedTes2", "../Assets/TankVTank_Media/Textures/Tanks/tank-23.png");
+	CacheTexture("RedTes2V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-23-3.png");
 	CacheTexture("RedTes3", "../Assets/TankVTank_Media/Textures/Tanks/tank-24.png");
+	CacheTexture("RedTes3V3", "../Assets/TankVTank_Media/Textures/Tanks/tank-24-3.png");
 
 
 
@@ -136,11 +154,11 @@ SFTextureManager::SFTextureManager()
 
 }
 
-SFTexturePtr SFTextureManager::GetTexture(const string& inTextureName, int tankType) //Jason- Overload of base GetTexture for tank textures
+SFTexturePtr SFTextureManager::GetTexture(const string& inTextureName, int tankType, int tankVersion) //Jason- Overload of base GetTexture for tank textures
 {
 	//return mNameToTextureMap[inTextureName];
 
-	std::string tex = pickTexture(inTextureName, tankType);
+	std::string tex = pickTexture(inTextureName, tankType, tankVersion);
 	return mNameToTextureMap[tex];
 }
 
@@ -149,7 +167,7 @@ SFTexturePtr SFTextureManager::GetTexture(const string& inTextureName)
 	return mNameToTextureMap[inTextureName];
 }
 
-std::string SFTextureManager::pickTexture(const string& inTextureName, int tankType) { //Jason - Gets texture based on value from tank type. Also checks which colour you are
+std::string SFTextureManager::pickTexture(const string& inTextureName, int tankType, int tankVersion) { //Jason - Gets texture based on value from tank type. Also checks which colour you are
 	srand((unsigned)time(0));
 	int result = 1 + (rand() % 3);
 
@@ -214,33 +232,63 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenHvy3";
+				if (tankVersion == 1) {
+					return "GreenHvy3V3";
+				}
+				else {
+					return "GreenHvy3";
+				}
 			}
 			else
 			{
-				return "RedHvy3";
+				if (tankVersion == 1) {
+					return "RedHvy3V3";
+				}
+				else {
+					return "RedHvy3";
+				}
 			}
 		}
 		else if (fileScore >= 3)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenHvy2";
+				if (tankVersion == 1) {
+					return "GreenHvy2V3";
+				}
+				else {
+					return "GreenHvy2";
+				}
 			}
 			else
 			{
-				return "RedHvy2";
+				if (tankVersion == 1) {
+					return "RedHvy2V3";
+				}
+				else {
+					return "RedHvy2";
+				}
 			}
 		}
 		else if (fileScore < 3)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenHvy1";
+				if (tankVersion == 1) {
+					return "GreenHvy1V3";
+				}
+				else {
+					return "GreenHvy1";
+				}
 			}
 			else
 			{
-				return "RedHvy1";
+				if (tankVersion == 1) {
+					return "RedHvy1V3";
+				}
+				else {
+					return "RedHvy1";
+				}
 			}
 		}
 		else //Default just in case
@@ -262,33 +310,63 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenGat3";
+				if (tankVersion == 2) {
+					return "GreenGat3V3";
+				}
+				else {
+					return "GreenGat3";
+				}
 			}
 			else
 			{
-				return "RedGat3";
+				if (tankVersion == 2) {
+					return "RedGat3V3";
+				}
+				else {
+					return "RedGat3";
+				}
 			}
 		}
 		else if (fileScore >= 3)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenGat2";
+				if (tankVersion == 2) {
+					return "GreenGat2V3";
+				}
+				else {
+					return "GreenGat2";
+				}
 			}
 			else
 			{
-				return "RedGat2";
+				if (tankVersion == 2) {
+					return "RedGat2V3";
+				}
+				else {
+					return "RedGat2";
+				}
 			}
 		}
 		else if (fileScore < 3)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenGat1";
+				if (tankVersion == 2) {
+					return "GreenGat1V3";
+				}
+				else {
+					return "GreenGat1";
+				}
 			}
 			else
 			{
-				return "RedGat1";
+				if (tankVersion == 2) {
+					return "RedGat1V3";
+				}
+				else {
+					return "RedGat1";
+				}
 			}
 		}
 		else //Default just in case
@@ -310,33 +388,63 @@ std::string SFTextureManager::pickTexture(const string& inTextureName, int tankT
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenTes3";
+				if (tankVersion == 3) {
+					return "GreenTes3V3";
+				}
+				else {
+					return "GreenTes3";
+				}
 			}
 			else
 			{
-				return "RedTes3";
+				if (tankVersion == 3) {
+					return "RedTes3V3";
+				}
+				else {
+					return "RedTes3";
+				}
 			}
 		}
 		else if (fileScore >= 3)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenTes2";
+				if (tankVersion == 3) {
+					return "GreenTes2V3";
+				}
+				else {
+					return "GreenTes2";
+				}
 			}
 			else
 			{
-				return "RedTes2";
+				if (tankVersion == 3) {
+					return "RedTes2V3";
+				}
+				else {
+					return "RedTes2";
+				}
 			}
 		}
 		else if (fileScore < 3)
 		{
 			if (inTextureName == "green")
 			{
-				return "GreenTes1";
+				if (tankVersion == 3) {
+					return "GreenTes1V3";
+				}
+				else {
+					return "GreenTes1";
+				}
 			}
 			else
 			{
-				return "RedTes1";
+				if (tankVersion == 3) {
+					return "RedTes1V3";
+				}
+				else {
+					return "RedTes1";
+				}
 			}
 		}
 		else //Default just in case

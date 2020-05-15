@@ -17,10 +17,10 @@ PlayerTextureGenerator::PlayerTextureGenerator()
 	};
 }
 
-SFTexturePtr PlayerTextureGenerator::GetPlayerTexure(uint32_t p_id, int tankType)
+SFTexturePtr PlayerTextureGenerator::GetPlayerTexure(uint32_t p_id, int tankType, int tankVersion)
 {
 	
-	return SFTextureManager::sInstance->GetTexture(ResolveID(p_id), tankType);
+	return SFTextureManager::sInstance->GetTexture(ResolveID(p_id), tankType, tankVersion);
 }
 
 std::string PlayerTextureGenerator::ResolveID(uint32_t p_id)

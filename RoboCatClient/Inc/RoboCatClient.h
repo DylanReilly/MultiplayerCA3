@@ -31,6 +31,9 @@ private:
 	SFHealthSpriteComponentPtr m_healthSprite;
 
 	bool m_textureIsDirty;
+	bool m_versionIsDirty;
 	uint8_t	mTankType;
+	uint8_t mTankVersion;
 	uint8_t mPrevTankType;
+	uint8_t mPrevTankVersion;
 };
